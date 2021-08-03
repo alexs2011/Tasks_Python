@@ -23,7 +23,7 @@ for number in range(n):
     last_digit = number % 10
     if last_digit == 0:
         cached_sum = sum_factorials_of_digits(number // 10)
-        s = cached_sum
+        s = cached_sum + 1
     else:
         s = cached_sum + factorials[last_digit]
     if s == number:
