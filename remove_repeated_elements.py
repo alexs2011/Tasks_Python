@@ -1,9 +1,7 @@
 def unique_order(elements):
-    res = []
-    unique_elem = None
+    res = [elements[0]]
     for el in elements:
-        if el != unique_elem:
-            unique_elem = el
+        if el != res[-1]:
             res.append(el)
     return res
 
