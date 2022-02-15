@@ -1,3 +1,9 @@
+"""
+Число 145 интересно тем, что 1! + 4! + 5! = 145.
+Задача: в диапазоне до 1 млн. или более найти ещё подобные числа — сумма
+факториалов цифр которых равна самому числу.
+"""
+
 import math
 import time
 
@@ -23,7 +29,7 @@ for number in range(n):
     last_digit = number % 10
     if last_digit == 0:
         cached_sum = sum_factorials_of_digits(number // 10)
-        s = cached_sum + 1
+        s = cached_sum + factorials[0]
     else:
         s = cached_sum + factorials[last_digit]
     if s == number:
