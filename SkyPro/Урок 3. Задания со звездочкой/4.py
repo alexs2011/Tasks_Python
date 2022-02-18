@@ -20,7 +20,7 @@ elif number[0] in second_digit:
     res = (second_digit.index(number[0]) + 1) * 10
 elif number[0] in first_digit:
     res = first_digit.index(number[0])
-elif number[0] in anomaly_number:  # значит число от 11 до 19
+elif number[0] in anomaly_number:
     res = anomaly_number.index(number[0]) + 11
 else:
     raise ValueError('Введено не число прописью.')
