@@ -18,10 +18,9 @@ except ValueError as e:
     print(f'Ошибка: {e}')
     quit()
 
-res = None
+first = number % 10
+second = number // 10
 if not 11 <= number <= 19:
-    first = number % 10
-    second = number // 10
     if second == 0:
         res = first_digit[first]
     elif first == 0:
@@ -29,7 +28,6 @@ if not 11 <= number <= 19:
     else:
         res = f'{second_digit[second - 1]} {first_digit[first]}'
 else:
-    first = number % 10
     res = anomaly_number[first - 1]
 
 print(res)
