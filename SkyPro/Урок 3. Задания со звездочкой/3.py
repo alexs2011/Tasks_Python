@@ -9,3 +9,16 @@
 Ограничение:
 Не используйте циклы в задаче.
 """
+
+ticket = input('Введите номер билета: ')
+try:
+    lst_ticket = list(int(x) for x in ticket)
+    if len(lst_ticket) != 6:
+        raise ValueError('В билете не 6 цифр.')
+except ValueError as e:
+    print(f'Ошибка! Описание: {e}')
+
+if sum(lst_ticket[:3]) == sum(lst_ticket[3:]):
+    print('Билет счастливый.')
+else:
+    print('Билет несчастливый.')
