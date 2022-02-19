@@ -11,7 +11,7 @@ map = ['трава', 'камни', 'озеро', 'озеро', 'песок', 'к
 idx = 0
 while True:
     print(f'Вы находитесь на клетке {idx + 1}. Вокруг вас {map[idx]}. Куда вы пойдете: вперед или назад?')
-    direction = input()
+    direction = input().lower()
     if direction not in ['вперед', 'назад']:
         print('Неверная команда')
         continue
