@@ -9,7 +9,7 @@ import string
 lower_vowels = 'аеёиоуыэюя' + 'aeiou'
 lower_consonants = 'бвгджзйклмнпрстфхцчшщъь' + 'bcdfghjklmnpqrstvwxyz'
 digits = string.digits
-punctuation_marks = string.punctuation + '—«»'
+punctuation_marks = string.punctuation + '—«»“”'
 
 ch = input('Введите символ: ')
 if len(ch) != 1:
