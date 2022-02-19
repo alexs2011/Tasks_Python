@@ -6,6 +6,7 @@
 
 user_input = "DRIVERS LICENSE, DON'T PLAY, AFTERGLOW, SWEET MELODY, AFTERGLOW, STREETS, AFTERGLOW, YOU BROKE ME FIRST"
 
+# Создаём список списков: [элемент, счётчик повторов]
 lst = [[x, 0] for x in user_input.split(', ')]
 
 for track in lst:
