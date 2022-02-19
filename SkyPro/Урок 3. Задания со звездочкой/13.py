@@ -9,7 +9,9 @@ user_input = "DRIVERS LICENSE, DON'T PLAY, AFTERGLOW, SWEET MELODY, AFTERGLOW, S
 lst = [[x, 0] for x in user_input.split(', ')]
 
 for track in lst:
+    # Для каждого элемента находим его индекс и индексы всех его повторов (если уже не находили ранее)
     indices = [i for i, x in enumerate(lst) if x == track and x[1] == 0]
+    # И увеличиваем счётчик повторов, чтобы для всех элементов со счётчиком > 0 изменить в последующем формат вывода
     for i, idx in enumerate(indices):
         lst[idx][1] = i
 
