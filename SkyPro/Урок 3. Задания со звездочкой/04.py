@@ -13,7 +13,7 @@ number = input('Введите число прописью: ').lower().split()
 
 # Решение 2
 match number:
-    case second, first if second in second_digit and first in first_digit:
+    case second, first if second in second_digit and first in first_digit[1:]:
         res = (second_digit.index(second) + 1) * 10 + first_digit.index(first)
     case second, if second in second_digit:
         res = (second_digit.index(second) + 1) * 10
