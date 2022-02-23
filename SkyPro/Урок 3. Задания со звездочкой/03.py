@@ -12,13 +12,11 @@
 
 ticket = input('Введите номер билета: ')
 try:
-    lst_ticket = list(int(x) for x in ticket)
-    if len(lst_ticket) != 6:
+    if len(ticket) != 6:
         raise ValueError('В билете не 6 цифр.')
+    if sum(map(int, ticket[:3])) == sum(map(int, ticket[3:])):
+        print('Билет счастливый.')
+    else:
+        print('Билет несчастливый.')
 except ValueError as e:
     print(f'Ошибка! Описание: {e}')
-
-if sum(lst_ticket[:3]) == sum(lst_ticket[3:]):
-    print('Билет счастливый.')
-else:
-    print('Билет несчастливый.')
