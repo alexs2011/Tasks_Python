@@ -95,7 +95,7 @@ for i in range(len(words)):
     # Находим индекс этого слова, чтобы в последующем изменить соответствующий ему элемент в списке ответов.
     idx = words.index(word)
 
-    print(f'Слово {i + 1} - {word_encode} {word}')
+    print(f'Слово {i + 1}: {word_encode}')
     user_input = input('Введите расшифровку: ')
 
     if user_input[1:].islower() and user_input.lower() == word:
