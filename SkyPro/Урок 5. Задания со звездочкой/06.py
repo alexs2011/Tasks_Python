@@ -15,10 +15,16 @@
 def change(amount: int, coins_value: list[int]) -> dict:
     d = dict.fromkeys(coins_value, 0)
     sorted_coins_value = sorted(coins_value, reverse=True)
+
     tmp_sum = 0
     for value in sorted_coins_value:
         d[value] = (amount - tmp_sum) // value
         tmp_sum += d[value] * value
+
+    if tmp_sum != amount:
+        raise ValueError(
+            f'Сумма не может быть выдана монетами заданного номинала. Не удаётся выдать рублей: {amount - tmp_sum}')
+
     return d
 
 
