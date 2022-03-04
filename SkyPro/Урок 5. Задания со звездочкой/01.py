@@ -5,7 +5,7 @@
 """
 
 
-def pixels_count(width, height, density=1):
+def pixels_count(width: int, height: int, density: int = 1) -> int:
     return width * height * density
 
 
