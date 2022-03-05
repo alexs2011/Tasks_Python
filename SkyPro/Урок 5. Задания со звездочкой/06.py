@@ -24,7 +24,6 @@ def change(amount: int, coins_value: list[int]) -> dict:
     if tmp_sum != amount:
         raise ValueError(
             f'Сумма не может быть выдана монетами заданного номинала. Не удаётся выдать рублей: {amount - tmp_sum}')
-
     return d
 
 
