@@ -11,14 +11,14 @@
 
 
 def choice_path(data: dict) -> str:
-    status = ['left', 'keep', 'right']
+    status = (('left', 'keep', 'right'), 'stop')
     for i in range(1, -2, -1):
         j = 0
         while j < len(data) and not data[j][i]:
             j += 1
         if j == len(data):
-            return status[i]
-    return 'stop'
+            return status[0][i]
+    return status[1][0]
 
 
 lidar_data = {
