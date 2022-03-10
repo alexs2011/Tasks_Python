@@ -3,3 +3,6 @@ Alex 10
 Alex 50
 Игорь 20
 test 50
+test2 30
+test3 0
+test3 10

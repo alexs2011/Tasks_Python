@@ -20,8 +20,8 @@ def read_history_statistic(filename: str = 'data/history.txt') -> tuple[int, int
     with open(filename, 'r', encoding='utf-8') as f_input:
         for line in f_input:
             data = line.strip().split()
-            if int(data[1]) > max_score:
-                max_score = int(data[1])
+            if (cur_score := int(data[1])) > max_score:
+                max_score = cur_score
             count_games += 1
     return count_games, max_score
 
