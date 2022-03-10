@@ -37,28 +37,29 @@ def update_history_statistic(name: str, score: int, filename: str = 'data/histor
             f_output.write(f'\n{name} {score}')
 
 
-user_name = input("Введите ваше имя: ")
+if __name__ == '__main__':
+    user_name = input("Введите ваше имя: ")
 
-words = read_words()
+    words = read_words()
 
-score = 0
+    score = 0
 
-for word in words:
-    shuffled_word = list(word)
-    random.shuffle(shuffled_word)
-    print(f'\nУгадайте слово: {"".join(shuffled_word)}')
-    user_input = input()
-    if user_input == word:
-        print('Верно! Вы получаете 10 очков.')
-        score += 10
-    else:
-        print(f'Неверно! Верный ответ – {word}.')
+    for word in words:
+        shuffled_word = list(word)
+        random.shuffle(shuffled_word)
+        print(f'\nУгадайте слово: {"".join(shuffled_word)}')
+        user_input = input()
+        if user_input == word:
+            print('Верно! Вы получаете 10 очков.')
+            score += 10
+        else:
+            print(f'Неверно! Верный ответ – {word}.')
 
-print(f'\nВаш счёт: {score}')
+    print(f'\nВаш счёт: {score}')
 
-update_history_statistic(user_name, score)
+    update_history_statistic(user_name, score)
 
-statistic = read_history_statistic()
+    statistic = read_history_statistic()
 
-print(f'\nВсего игр сыграно: {statistic[0]}')
-print(f'Максимальный рекорд: {statistic[1]}')
+    print(f'\nВсего игр сыграно: {statistic[0]}')
+    print(f'Максимальный рекорд: {statistic[1]}')
