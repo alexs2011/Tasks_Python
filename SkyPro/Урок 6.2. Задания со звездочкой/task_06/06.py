@@ -27,10 +27,10 @@ else:
     print('Все дела сделаны!')
     quit()
 
-with open('todo.txt', 'w', encoding='utf-8') as f_out:
-    for task in task_lst:
-        if task[1] == 'TODO':
-            user_input = input(f'{task[0]} – сделано? (y/n)\n').lower()
-            task[1] = 'DONE' if user_input == 'y' else 'TODO'
+for task in task_lst:
+    if task[1] == 'TODO':
+        user_input = input(f'{task[0]} – сделано? (y/n)\n').lower()
+        task[1] = 'DONE' if user_input == 'y' else 'TODO'
 
+with open('todo.txt', 'w', encoding='utf-8') as f_out:
     f_out.write('\n'.join(f'{x[0]}: {x[1]}' for x in task_lst))
