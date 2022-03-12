@@ -13,14 +13,21 @@ car_pos_idx = 2
 print(f'  X   {car_pos_idx + 1}')
 
 with open('furry_road.txt', 'r', encoding='utf-8') as f_in:
+    # prev_row нужен для проверки того, было ли в предыдущем ряду препятствие в том направлении, в котором мы хотим
+    #                                                     X
+    # переместиться. Это нужно для того, чтобы в ситуации ░ ▓ ░ ▓ ░ машина не могла проехать по диагонали.
+    #                                                     ▓ ░ ▓ ░ ░
+    prev_row = clear_path * 5
+
     for row in f_in:
         row = row.strip().split()
         print(''.join(row), end=' ')
         if row[car_pos_idx] == obstacle:
-            if car_pos_idx > 0 and row[car_pos_idx - 1] == clear_path:
+            if car_pos_idx > 0 and row[car_pos_idx - 1] == clear_path and prev_row[car_pos_idx - 1] == clear_path:
                 print(f'right->{car_pos_idx}')
                 car_pos_idx -= 1
-            elif car_pos_idx < len(row) - 1 and row[car_pos_idx + 1] == clear_path:
+            elif car_pos_idx < len(row) - 1 and row[car_pos_idx + 1] == clear_path \
+                    and prev_row[car_pos_idx + 1] == clear_path:
                 print(f'left->{car_pos_idx + 2}')
                 car_pos_idx += 1
             else:
@@ -28,3 +35,5 @@ with open('furry_road.txt', 'r', encoding='utf-8') as f_in:
                 break
         else:
             print('stay')
+
+        prev_row = row
