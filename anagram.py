@@ -15,12 +15,11 @@ def anagram(first: str, second: str) -> bool:
     first_lst = list(first)
     second_lst = list(second)
     for ch in first_lst:
-        if ch in second_lst:
-            second_lst.remove(ch)
-        else:
+        if ch not in second_lst:
             return False
+        second_lst.remove(ch)
     return True
 
 
 if __name__ == '__main__':
-    print('YES' if anagram('aaab', 'baab') else "NO")
+    print('YES' if anagram('late', 'tale') else "NO")
