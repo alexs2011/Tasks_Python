@@ -12,9 +12,8 @@
 def anagram(first: str, second: str) -> bool:
     if len(first) != len(second):
         return False
-    first_lst = list(first)
     second_lst = list(second)
-    for ch in first_lst:
+    for ch in first:
         if ch not in second_lst:
             return False
         second_lst.remove(ch)
