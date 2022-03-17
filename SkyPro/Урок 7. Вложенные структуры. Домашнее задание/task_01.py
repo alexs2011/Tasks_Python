@@ -90,7 +90,7 @@ def save_results_to_file(statistics: dict, filename: str = 'data/results.json') 
             total_stat.append(statistics)
 
     with open(filename, 'w', encoding='utf-8') as f_out:
-        json.dump(total_stat, f_out)
+        json.dump(total_stat, f_out, indent=2)
 
 
 if __name__ == '__main__':
