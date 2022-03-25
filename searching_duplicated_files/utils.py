@@ -28,10 +28,10 @@ def files_number(root_dir: str) -> int:
 
 
 def save_to_file(d: dict, filename: str = 'duplicates.json') -> None:
-    tmp_dict = deepcopy(d)
+    res_dict = deepcopy(d)
     for key, val in d.items():
         if len(val) == 1:
-            del tmp_dict[key]
+            del res_dict[key]
 
     with open(filename, 'w', encoding='utf-8') as f_in:
-        json.dump(tmp_dict, f_in, indent=2, ensure_ascii=False)
+        json.dump(res_dict, f_in, indent=2, ensure_ascii=False)

@@ -2,7 +2,7 @@ from os import path
 
 import utils
 
-path_name = "D:\Фото"
+path_name = "D:\\Фото"
 
 d = {}
 
