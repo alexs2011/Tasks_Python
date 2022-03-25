@@ -16,6 +16,4 @@ for i, cur_path in enumerate(utils.traverse_dir(path_name)):
     if i % 100 == 0:
         print(f'Processed {i} files from {n_files}')
 
-for val in d.values():
-    if len(val) > 1:
-        print(val)
+utils.save_to_file(d)
