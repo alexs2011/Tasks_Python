@@ -45,10 +45,10 @@ if __name__ == '__main__':
         answers[user_input] += 1
 
     sorted_answers = list(sorted(answers.items(), key=lambda item: item[1], reverse=True))
-    is_answers_equal = sorted_answers[0][1] == sorted_answers[-1][1]
+    is_max_answer_unique = sorted_answers[0][1] == sorted_answers[1][1]
 
     print()
-    if is_answers_equal:
+    if is_max_answer_unique:
         print(results['Unknown'])
     else:
         print(results[sorted_answers[0][0]])
