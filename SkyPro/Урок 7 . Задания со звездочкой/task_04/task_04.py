@@ -11,7 +11,7 @@ from json import JSONEncoder
 
 
 # subclass JSONEncoder
-class setEncoder(JSONEncoder):
+class SetEncoder(JSONEncoder):
     def default(self, obj):
         return list(obj)
 
@@ -50,7 +50,7 @@ def find_inversions(data: list[dict]) -> dict:
 
 def save_data(data: dict, filename: str) -> None:
     with open(filename, 'w', encoding='utf-8') as f_out:
-        json.dump(data, f_out, ensure_ascii=False, cls=setEncoder, indent=3)
+        json.dump(data, f_out, ensure_ascii=False, cls=SetEncoder, indent=3)
 
 
 if __name__ == '__main__':
