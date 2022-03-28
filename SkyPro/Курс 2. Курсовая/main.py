@@ -2,7 +2,7 @@
 https://skyengpublic.notion.site/2-3849668e2da3404ab2fb5976ab0d7338
 
 url: https://jsonkeeper.com/b/RI5V
-test_error_url = "https://jsonkeeper.com/b/6JQ9"
+test_ValueError_url = "https://jsonkeeper.com/b/6JQ9"
 """
 import utils
 
