@@ -19,11 +19,11 @@ class Player:
 
     @name.setter
     def name(self, player_name: str) -> None:
-        self.validate_name(player_name)
+        self.__validate_name(player_name)
         self.__name = player_name
 
     @staticmethod
-    def validate_name(player_name: str) -> None:
+    def __validate_name(player_name: str) -> None:
         """
         Проверяет, что имя не пусто, либо не содержит только пробельные символы.
         """
