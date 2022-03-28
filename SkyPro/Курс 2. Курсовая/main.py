@@ -12,6 +12,7 @@ if __name__ == '__main__':
 
     user_name = input("Введите имя игрока: ")
     player = utils.generate_player(user_name)
+
     print(f"\nПривет, {player.name}!")
     print(f"Составьте {len(word)} слов из слова {word.word.upper()}")
     print("Слова должны быть не короче 3 букв")
