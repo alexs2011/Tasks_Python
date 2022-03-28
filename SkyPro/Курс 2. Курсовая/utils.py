@@ -15,8 +15,8 @@ def load_random_word(url: str) -> BasicWord:
             raise ConnectionError(f"Отсутствует подключение к интернету.")
         if data.status_code != 200:
             raise ConnectionError("Удалённый ресурс не отвечает или не существует.")
-        if 'application/json' not in data.headers.get('Content-Type'):
-            raise requests.exceptions.JSONDecodeError(f"Результат запроса не JSON: {data.headers.get('Content-Type')}")
+        if 'application/json' not in (cont_type := data.headers.get('Content-Type')):
+            raise requests.exceptions.JSONDecodeError(f"Результат запроса не JSON: {cont_type}")
 
         data = data.json()
 
