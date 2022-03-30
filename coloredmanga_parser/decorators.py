@@ -1,17 +1,23 @@
 import time
+import functools
 
 
 def timer(func):
+    """
+    Печатает время выполнения декорированной функции.
+    """
+    @functools.wraps(func)
     def wrapper(*args, **kwargs):
         start = time.time()
         val = func(*args, **kwargs)
         end = time.time()
         if 'download' in func.__name__:
-            print(f"Время загрузки: {end - start} c.")
+            action = 'загрузки'
         elif 'parse' in func.__name__:
-            print(f"Время парсинга: {end - start} c.")
+            action = 'парсинга'
         else:
-            print(f"Время выполнения: {end - start} c.")
+            action = 'выполнения'
+        print(f"Время {action}: {end - start:4f} c.")
 
         return val
 
