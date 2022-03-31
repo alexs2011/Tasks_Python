@@ -12,13 +12,7 @@ def timer(func):
         start = time.time()
         val = func(*args, **kwargs)
         end = time.time()
-        action = 'выполнения'
-        if 'download' in func.__name__:
-            action = 'загрузки'
-        elif 'parse' in func.__name__:
-            action = 'парсинга'
-
-        print(f"Время {action}: {end - start:4f} c.")
+        print(f"Время выполнения {func.__name__}: {end - start:4f} c.")
 
         return val
 
@@ -41,11 +35,12 @@ def console_log(_func=None, *, info=None):
     При отсутствии аттрибута будет вызван AttributeError.
     Пример:
         @console_log(info={'attr': 'name', 'm': 'обработано'})
-        def __build_pages(self):...
+        def __build_pages(...):...
     Вывод:
         Выполнено: __build_pages с сообщением: обработано Chapter 17 - High Level, Low Level
     """
     def dec(func):
+        @functools.wraps(func)
         def wrapper(self, *args, **kwargs):
             val = func(self, *args, **kwargs)
 

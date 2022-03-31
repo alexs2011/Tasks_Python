@@ -67,7 +67,7 @@ class Manga:
         Заполняет список томов для данных, полученных из удалённого источника.
         """
         # обработка только 2-х томов в целях отладки.
-        # manga_vols = {k: manga_vols[k] for k in list(manga_vols)[:2]}
+        manga_vols = {k: manga_vols[k] for k in list(manga_vols)[:2]}
 
         for vol_name, chapters in manga_vols.items():
             # Главы в томах располагаются в обратном порядке, например,
