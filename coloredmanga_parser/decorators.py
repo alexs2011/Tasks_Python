@@ -11,12 +11,12 @@ def timer(func):
         start = time.time()
         val = func(*args, **kwargs)
         end = time.time()
+        action = 'выполнения'
         if 'download' in func.__name__:
             action = 'загрузки'
         elif 'parse' in func.__name__:
             action = 'парсинга'
-        else:
-            action = 'выполнения'
+
         print(f"Время {action}: {end - start:4f} c.")
 
         return val
