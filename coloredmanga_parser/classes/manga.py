@@ -1,6 +1,7 @@
 from classes.volume import Volume
 from classes.utils.downloader import Downloader
 from classes.utils.parser import Parser
+from utility.decorators import console_log
 
 
 class Manga:
@@ -12,7 +13,7 @@ class Manga:
         self.link = link
         self.from_file = from_file
 
-        self.title = None
+        self.name = None
         self.volumes = []
 
         self.__build_volumes()
@@ -23,7 +24,7 @@ class Manga:
         """
         return '' \
                f'{{\n"url": "{self.link}",\n' \
-               f'"name": "{self.title}",\n' \
+               f'"name": "{self.name}",\n' \
                f'"volumes": {self.volumes}\n}}'
 
     def __len__(self) -> int:
@@ -32,6 +33,7 @@ class Manga:
         """
         return len(self.volumes)
 
+    @console_log(info='обработана главная страница')
     def __get_vols_from_url(self) -> dict[str:[dict[str:str]]]:
         """
         На основе url-адреса скачивает главную страницу манги и при помощи Parser определяет название и
@@ -42,12 +44,11 @@ class Manga:
         manga_html = downloader.data
 
         parser = Parser(manga_html)
-        self.title, manga_vols = parser.parse_manga_page()
-
-        print(f"Обработана главная страница манги: {self.title}")
+        self.name, manga_vols = parser.parse_manga_page()
 
         return manga_vols
 
+    @console_log(info='обработана главная страница')
     def __get_vols_from_file(self) -> list[dict]:
         """
         На основе файла JSON заполняет поля класса Manga. Возвращает список томов для дальнейшей обработки.
@@ -57,9 +58,7 @@ class Manga:
         manga_json = downloader.data
 
         self.link = manga_json['url']
-        self.title = manga_json['name']
-
-        print(f"Обработана главная страница манги: {self.title}")
+        self.name = manga_json['name']
 
         return manga_json['volumes']
 
@@ -68,7 +67,7 @@ class Manga:
         Заполняет список томов для данных, полученных из удалённого источника.
         """
         # обработка только 2-х томов в целях отладки.
-        # dbg = {k: manga_vols[k] for k in list(manga_vols)[:2]}
+        # manga_vols = {k: manga_vols[k] for k in list(manga_vols)[:2]}
 
         for vol_name, chapters in manga_vols.items():
             # Главы в томах располагаются в обратном порядке, например,

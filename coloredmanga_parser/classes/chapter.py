@@ -1,6 +1,7 @@
 from classes.utils.downloader import Downloader
 from classes.utils.parser import Parser
 from classes.page import Page
+from utility.decorators import console_log
 
 
 class Chapter:
@@ -57,6 +58,7 @@ class Chapter:
         for page in self.raw_pages:
             self.pages.append(Page(page['url'], page['number']))
 
+    @console_log(info={'attr': 'name', 'm': 'обработано'})
     def __build_pages(self) -> None:
         """
         Формирует список страниц данной главы с учётом того, откуда поступают данные.
@@ -66,5 +68,3 @@ class Chapter:
         else:
             chapter_pages = self.__get_pages_from_url()
             self.__build_pages_from_url(chapter_pages)
-
-        print(f"\t\tОбработана глава: {self.name}")

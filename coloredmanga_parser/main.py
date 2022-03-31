@@ -12,7 +12,7 @@ def main():
     # загрузка структуры манги из файла.
     manga_contents = utils.build_contents(filename, from_file=True)
     # проверочное сохранение в этот же файл.
-    # utils.save_contents(manga_contents, filename=filename)
+    utils.save_contents(manga_contents, filename=filename)
 
 
 if __name__ == '__main__':

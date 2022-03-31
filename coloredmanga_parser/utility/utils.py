@@ -1,6 +1,7 @@
 import json
 
 from classes.manga import Manga
+from utility.decorators import console_log
 
 
 def build_contents(link: str, from_file: bool = False) -> Manga:
@@ -10,6 +11,7 @@ def build_contents(link: str, from_file: bool = False) -> Manga:
     return Manga(link, from_file)
 
 
+@console_log(info='Данные сохранены')
 def save_contents(manga: Manga, filename: str = "..\\coloredmanga_parser\\data\\contents.json") -> None:
     """
     Сохраняет содержимое, то есть иерархию файлов, класса Manga в файл в формате JSON.
@@ -22,5 +24,3 @@ def save_contents(manga: Manga, filename: str = "..\\coloredmanga_parser\\data\\
             json.dump(data_json, f_out, indent=2)
     except PermissionError:
         raise PermissionError("Файл доступен только для чтения. Невозможно произвести запись.")
-
-    print("Данные сохранены.")

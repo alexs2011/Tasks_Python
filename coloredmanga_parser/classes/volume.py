@@ -44,8 +44,6 @@ class Volume:
         """
         Формирует список глав данного тома с учётом того, откуда поступают данные.
         """
-        print(f"\tОбрабатывается том: {self.name}")
-
         if self.from_file:
             self.__build_chapters_from_file(chapters)
         else:
