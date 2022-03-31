@@ -1,6 +1,6 @@
 from classes.volume import Volume
-from classes.downloader import Downloader
-from classes.parser import Parser
+from classes.utils.downloader import Downloader
+from classes.utils.parser import Parser
 
 
 class Manga:

@@ -2,7 +2,7 @@ import os
 import requests
 import json
 
-from decorators import timer
+from utility.decorators import timer
 
 
 class Downloader:

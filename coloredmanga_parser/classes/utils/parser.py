@@ -1,6 +1,6 @@
 import lxml.html
 
-from decorators import timer
+from utility.decorators import timer
 
 
 class Parser:
