@@ -2,7 +2,7 @@ from utility import utils
 
 
 def main():
-    filename = "..\\coloredmanga_parser\\data\\contents.json"
+    filename = "data/contents_shrink.json"
 
     # загрузка структуры манги с сайта и её сохранение в файле формата JSON.
     # url = "https://coloredmanga.com/manga/one-piece/"
