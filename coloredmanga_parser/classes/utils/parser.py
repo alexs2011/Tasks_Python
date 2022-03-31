@@ -11,15 +11,15 @@ class Parser:
         self.data = data
 
     @timer
-    def parse_manga_page(self) -> tuple[str, dict[str:[dict[str:str]]]]:
+    def parse_manga_page(self) -> tuple[str, dict[str, dict[str, str]]]:
         """
         Разбирает главную страницу манги и находит название манги, тома и главы для соответствующих томов.
         """
-        parsed_data = {}
+        parsed_data: dict[str, dict[str, str]] = {}
 
         tree = lxml.html.document_fromstring(self.data)
 
-        title = tree.xpath("//head/title/text()")[0].split('|')[0].strip()
+        title: str = tree.xpath("//head/title/text()")[0].split('|')[0].strip()
 
         for el in tree.xpath("//*[starts-with(@class, 'parent has-child')]"):
             vol_name = el.xpath(".//a/text()")[0].strip()

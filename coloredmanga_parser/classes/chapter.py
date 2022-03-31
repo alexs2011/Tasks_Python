@@ -11,7 +11,7 @@ class Chapter:
         """
         self.name = name
         self.url = chapter_url
-        self.pages = []
+        self.pages: list[Page] = []
         self.raw_pages = raw_pages
         self.from_file = from_file
 

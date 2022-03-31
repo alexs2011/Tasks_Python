@@ -2,12 +2,12 @@ from classes.chapter import Chapter
 
 
 class Volume:
-    def __init__(self, name: str, chapters: dict[str:str] | list[dict], from_file: bool = False) -> None:
+    def __init__(self, name: str, chapters: dict[str, str] | list[dict], from_file: bool = False) -> None:
         """
         Класс, хранящий название тома и список его глав.
         """
         self.name = name
-        self.chapters = []
+        self.chapters: list[Chapter] = []
         self.from_file = from_file
 
         self.__build_chapters(chapters)
@@ -26,7 +26,7 @@ class Volume:
         """
         return len(self.chapters)
 
-    def __build_chapters_from_url(self, chapters: dict[str:str]) -> None:
+    def __build_chapters_from_url(self, chapters: dict[str, str]) -> None:
         """`
         Формирует список глав для данных, полученных из удалённого источника.
         """
@@ -40,7 +40,7 @@ class Volume:
         for ch in chapters:
             self.chapters.append(Chapter(ch['name'], ch['url'], raw_pages=ch['pages'], from_file=True))
 
-    def __build_chapters(self, chapters: dict[str:str] | list[dict]) -> None:
+    def __build_chapters(self, chapters: dict[str, str] | list[dict]) -> None:
         """
         Формирует список глав данного тома с учётом того, откуда поступают данные.
         """

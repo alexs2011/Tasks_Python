@@ -14,7 +14,7 @@ class Manga:
         self.from_file = from_file
 
         self.name = None
-        self.volumes = []
+        self.volumes: list[Volume] = []
 
         self.__build_volumes()
 
@@ -34,7 +34,7 @@ class Manga:
         return len(self.volumes)
 
     @console_log(info='обработана главная страница')
-    def __get_vols_from_url(self) -> dict[str:[dict[str:str]]]:
+    def __get_vols_from_url(self) -> dict[str, dict[str, str]]:
         """
         На основе url-адреса скачивает главную страницу манги и при помощи Parser определяет название и
         тома, а так же url-адреса глав, соответствующих томам.
@@ -62,7 +62,7 @@ class Manga:
 
         return manga_json['volumes']
 
-    def __build_vols_from_utl(self, manga_vols: dict[str:[dict[str:str]]]) -> None:
+    def __build_vols_from_utl(self, manga_vols: dict[str, dict[str, str]]) -> None:
         """
         Заполняет список томов для данных, полученных из удалённого источника.
         """
