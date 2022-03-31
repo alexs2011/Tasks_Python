@@ -6,6 +6,7 @@ def timer(func):
     """
     Печатает время выполнения декорированной функции.
     """
+
     @functools.wraps(func)
     def wrapper(*args, **kwargs):
         start = time.time()
@@ -22,3 +23,17 @@ def timer(func):
         return val
 
     return wrapper
+
+
+def console_log(_func=None, *, info_str=None):
+    def dec(func):
+        def wrapper(*args, **kwargs):
+
+            val = func(*args, **kwargs)
+
+            return val
+        return wrapper
+    if _func is None:
+        return dec
+    else:
+        return dec(_func)
