@@ -19,7 +19,7 @@ class Parser:
 
         tree = lxml.html.document_fromstring(self.data)
 
-        title: str = tree.xpath("//head/title/text()")[0].split('|')[0].strip()
+        title: str = tree.xpath("//head/title/text()")[0].split('|')[0].strip()[5:]
 
         for el in tree.xpath("//*[starts-with(@class, 'parent has-child')]"):
             vol_name = el.xpath(".//a/text()")[0].strip()

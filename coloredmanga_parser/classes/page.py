@@ -1,5 +1,7 @@
+from classes.c_utils.downloader import Downloader
+
 class Page:
-    def __init__(self, page_url: str, n_page: int) -> None:
+    def __init__(self, page_url: str, n_page: str) -> None:
         """
         Класс, хранящий url-адрес страницы и её номер в главе.
         """
@@ -13,3 +15,9 @@ class Page:
         return f'' \
                f'\n\t\t\t{{\n"url": "{self.url}",\n' \
                f'\t\t\t"number": "{self.number}"\n}}'
+
+    def download(self, path: str, page_number: str) -> None:
+        extension = self.url.split(".")[-1]
+        path = f"{path}{page_number}.{extension}"
+        downloader = Downloader(self.url)
+        downloader.download_page(path)

@@ -1,7 +1,12 @@
 import json
+import os
 
-from classes.manga import Manga
 from utility.decorators import console_log
+from classes.manga import Manga
+
+# Название манги и глав может содержать символы, запрещённые в именах папок.
+# В этом случае они должны быть удалены.
+WINDOWS_PROHIBITED_DIR_NAME_CHARS = ["<", ">", "*", "?", "/", "\\", "|", ":", '"']
 
 
 def build_contents(link: str, from_file: bool = False) -> Manga:
@@ -29,3 +34,15 @@ def save_contents(manga: Manga, filename: str = "..\\coloredmanga_parser\\data\\
 def download_manga(contents: Manga, dir_root: str, is_flatten: bool = False, start_vol: int = 0,
                    end_vol: int = 0) -> None:
     contents.download(dir_root, is_flatten, start_vol, end_vol)
+
+
+def create_dir(path: str) -> str:
+    split_path = list(filter(None, path.split("\\")))
+    name = split_path[-1]
+    new_path = split_path[:-1]
+    for ch in WINDOWS_PROHIBITED_DIR_NAME_CHARS:
+        name = name.replace(ch, "")
+    new_path.append(name)
+    new_path = "{0}".format('\\'.join(new_path)) + "\\"
+    os.makedirs(new_path, exist_ok=True)
+    return new_path

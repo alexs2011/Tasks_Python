@@ -1,10 +1,10 @@
 import math
-import os
 
-from classes.volume import Volume
-from classes.utils.downloader import Downloader
-from classes.utils.parser import Parser
+import utility.utils as utils
 from utility.decorators import console_log
+from classes.volume import Volume
+from classes.c_utils.downloader import Downloader
+from classes.c_utils.parser import Parser
 
 
 class Manga:
@@ -105,7 +105,7 @@ class Manga:
         self.__validate_downloading_params(start_vol, end_vol)
 
         path = f"{dir_root}{self.name}\\"
-        os.makedirs(path, exist_ok=True)
+        permitted_path = utils.create_dir(path)
 
         if end_vol == 0:
             end_vol = math.inf
@@ -113,4 +113,4 @@ class Manga:
         for vol in self.volumes:
             vol_num = int(vol.name.split()[1])
             if start_vol <= vol_num < end_vol:
-                vol.download(path, is_flatten)
+                vol.download(permitted_path, is_flatten)

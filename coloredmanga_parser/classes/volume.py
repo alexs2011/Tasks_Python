@@ -1,5 +1,4 @@
-import os
-
+import utility.utils as utils
 from classes.chapter import Chapter
 
 
@@ -53,6 +52,8 @@ class Volume:
 
     def download(self, path: str, is_flatten: bool) -> None:
         path = f"{path}{self.name}\\"
-        os.makedirs(path, exist_ok=True)
+        permitted_path = utils.create_dir(path)
 
-
+        last_page_number = 0
+        for ch in self.chapters:
+            last_page_number = ch.download(permitted_path, is_flatten, page_number=last_page_number)

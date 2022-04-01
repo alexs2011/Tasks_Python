@@ -1,5 +1,6 @@
 import os
 import requests
+import shutil
 import json
 
 from utility.decorators import timer
@@ -62,3 +63,20 @@ class Downloader:
             raise FileNotFoundError(
                 "Файл отсутствует. Проверьте путь до файла или произведите загрузку данных из удалённого источника."
             )
+
+    @staticmethod
+    def __save_data(data: requests.models.Response, path: str) -> None:
+        data.raw.decode_content = True
+        with open(path, 'wb') as f_out:
+            shutil.copyfileobj(data.raw, f_out)
+
+    @timer
+    def download_page(self, path: str) -> None:
+        try:
+            data = requests.get(self.link, stream=True)
+        except requests.exceptions.ConnectionError:
+            raise ConnectionError(f"Отсутствует подключение к интернету.")
+
+        self.__is_status_code_ok(data)
+
+        self.__save_data(data, path)

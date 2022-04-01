@@ -1,7 +1,8 @@
-from classes.utils.downloader import Downloader
-from classes.utils.parser import Parser
-from classes.page import Page
+import utility.utils as utils
 from utility.decorators import console_log
+from classes.c_utils.downloader import Downloader
+from classes.c_utils.parser import Parser
+from classes.page import Page
 
 
 class Chapter:
@@ -48,7 +49,7 @@ class Chapter:
         Формирует список страниц для данных, полученных из удалённого источника.
         """
         for i, page in enumerate(chapter_pages, 1):
-            self.pages.append(Page(page, i))
+            self.pages.append(Page(page, str(i)))
 
     def __build_pages_from_file(self) -> None:
         """`
@@ -67,3 +68,22 @@ class Chapter:
         else:
             chapter_pages = self.__get_pages_from_url()
             self.__build_pages_from_url(chapter_pages)
+
+    def download(self, path: str, is_flatten: bool, page_number: int = 0) -> int:
+        if is_flatten:
+            permitted_path = path
+        else:
+            path = f"{path}{self.name}\\"
+            permitted_path = utils.create_dir(path)
+
+        number = page_number
+        for page in self.pages:
+            if is_flatten:
+                number += 1
+                number_str = str(number).rjust(4, "0")
+            else:
+                number_str = page.number.rjust(3, "0")
+            page.download(permitted_path, number_str)
+
+        return number
+
