@@ -1,3 +1,6 @@
+import math
+import os
+
 from classes.volume import Volume
 from classes.utils.downloader import Downloader
 from classes.utils.parser import Parser
@@ -90,3 +93,25 @@ class Manga:
         else:
             manga_vols = self.__get_vols_from_url()
             self.__build_vols_from_utl(manga_vols)
+
+    @staticmethod
+    def __validate_downloading_params(start_vol: int, end_vol: int) -> None:
+        if start_vol < 0 or end_vol < 0:
+            raise ValueError("Номер тома не может быть меньше 0.")
+        if start_vol != 0 and end_vol != 0 and start_vol >= end_vol:
+            raise ValueError("Номер начального тома больше или равен номеру конечного.")
+
+    def download(self, dir_root: str, is_flatten: bool, start_vol: int, end_vol: int) -> None:
+        self.__validate_downloading_params(start_vol, end_vol)
+
+        path = f"{dir_root}{self.name}\\"
+        if not os.path.exists(path):
+            os.makedirs(path)
+
+        if end_vol == 0:
+            end_vol = math.inf
+
+        for vol in self.volumes:
+            vol_num = int(vol.name.split()[1])
+            if start_vol <= vol_num < end_vol:
+                vol.download(path, is_flatten)

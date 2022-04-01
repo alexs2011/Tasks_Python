@@ -1,3 +1,5 @@
+import os
+
 from classes.chapter import Chapter
 
 
@@ -48,3 +50,10 @@ class Volume:
             self.__build_chapters_from_file(chapters)
         else:
             self.__build_chapters_from_url(chapters)
+
+    def download(self, path: str, is_flatten: bool) -> None:
+        path = f"{path}{self.name}\\"
+        if not os.path.exists(path):
+            os.makedirs(path)
+
+
