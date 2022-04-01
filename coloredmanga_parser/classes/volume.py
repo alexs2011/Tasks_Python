@@ -53,7 +53,6 @@ class Volume:
 
     def download(self, path: str, is_flatten: bool) -> None:
         path = f"{path}{self.name}\\"
-        if not os.path.exists(path):
-            os.makedirs(path)
+        os.makedirs(path, exist_ok=True)
 
 

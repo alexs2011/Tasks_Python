@@ -105,8 +105,7 @@ class Manga:
         self.__validate_downloading_params(start_vol, end_vol)
 
         path = f"{dir_root}{self.name}\\"
-        if not os.path.exists(path):
-            os.makedirs(path)
+        os.makedirs(path, exist_ok=True)
 
         if end_vol == 0:
             end_vol = math.inf
