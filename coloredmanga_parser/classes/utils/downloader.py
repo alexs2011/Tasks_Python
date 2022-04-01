@@ -12,8 +12,6 @@ class Downloader:
         """
         self.link = link
 
-        self.data = None
-
     @staticmethod
     def __is_status_code_ok(data: requests.models.Response) -> None:
         """
@@ -38,7 +36,7 @@ class Downloader:
         self.__is_content_type_html(data)
 
     @timer
-    def download_html(self) -> None:
+    def download_html(self) -> str:
         """
         Загружает данные из удалённого источника.
         """
@@ -49,9 +47,9 @@ class Downloader:
 
         self.__validate_html_data(data)
 
-        self.data = data.text
+        return data.text
 
-    def download_local_file(self) -> None:
+    def download_local_file(self) -> dict:
         """
         Загружает данные из файла.
         """
@@ -59,8 +57,7 @@ class Downloader:
             with open(self.link, 'r', encoding='utf-8') as f_in:
                 if os.stat(self.link).st_size == 0:  # если файл пуст
                     raise ValueError("Файл пуст. Произведите загрузку данных из удалённого источника.")
-                else:
-                    self.data = json.load(f_in)
+                return json.load(f_in)
         except FileNotFoundError:
             raise FileNotFoundError(
                 "Файл отсутствует. Проверьте путь до файла или произведите загрузку данных из удалённого источника."

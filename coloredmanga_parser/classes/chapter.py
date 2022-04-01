@@ -38,8 +38,7 @@ class Chapter:
         т.е. изображений, в главе.
         """
         downloader = Downloader(self.url)
-        downloader.download_html()
-        chapter_html = downloader.data
+        chapter_html = downloader.download_html()
 
         parser = Parser(chapter_html)
         return parser.parse_chapter_page()

@@ -40,8 +40,7 @@ class Manga:
         тома, а так же url-адреса глав, соответствующих томам.
         """
         downloader = Downloader(self.link)
-        downloader.download_html()
-        manga_html = downloader.data
+        manga_html = downloader.download_html()
 
         parser = Parser(manga_html)
         self.name, manga_vols = parser.parse_manga_page()
@@ -54,8 +53,7 @@ class Manga:
         На основе файла JSON заполняет поля класса Manga. Возвращает список томов для дальнейшей обработки.
         """
         downloader = Downloader(self.link)
-        downloader.download_local_file()
-        manga_json = downloader.data
+        manga_json = downloader.download_local_file()
 
         self.link = manga_json['url']
         self.name = manga_json['name']
