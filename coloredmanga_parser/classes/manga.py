@@ -94,15 +94,20 @@ class Manga:
             manga_vols = self.__get_vols_from_url()
             self.__build_vols_from_utl(manga_vols)
 
-    @staticmethod
-    def __validate_downloading_params(start_vol: int, end_vol: int) -> None:
+    def __validate_downloading_params(self, start_vol: int, end_vol: int) -> None:
         """
         Проверяет правильность параметров ограничения начального и конечного томов для сохранения.
         """
+        if start_vol != 0 or end_vol != 0:
+            if len(self.volumes) == 1 and self.volumes[0].name == "No Volumes":
+                raise ValueError(
+                    "У данной манги нет томов, только список глав. Параметры start_vol и end_vol недоступны."
+                )
         if start_vol < 0 or end_vol < 0:
             raise ValueError("Номер тома не может быть меньше 0.")
-        if start_vol != 0 and end_vol != 0 and start_vol >= end_vol:
-            raise ValueError("Номер начального тома больше или равен номеру конечного.")
+        if start_vol != 0 and end_vol != 0:
+            if start_vol >= end_vol:
+                raise ValueError("Номер начального тома больше или равен номеру конечного.")
 
     def download(self, dir_root: str, is_flatten: bool, start_vol: int, end_vol: int) -> None:
         """
@@ -117,6 +122,10 @@ class Manga:
             end_vol = math.inf
 
         for vol in self.volumes:
-            vol_num = int(vol.name.split()[1])
+            # У некоторых манг на сайте нет томов, только главы. Обрабатываем такой случай.
+            if not (len(self.volumes) == 1 and self.volumes[0].name == "No Volumes"):
+                vol_num = int(vol.name.split()[1])
+            else:
+                vol_num = 1
             if start_vol <= vol_num < end_vol:
                 vol.download(permitted_path, is_flatten)
