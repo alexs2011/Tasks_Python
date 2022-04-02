@@ -62,7 +62,7 @@ def create_dir(path: str) -> str:
     путь, по которому была создана директория.
     """
     split_path = list(filter(None, path.split("\\")))
-    name, *new_path = split_path
+    *new_path, name = split_path
     for ch in WINDOWS_PROHIBITED_DIR_NAME_CHARS:
         name = name.replace(ch, "")
     new_path.append(name)
