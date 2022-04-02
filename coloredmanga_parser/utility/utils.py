@@ -28,7 +28,7 @@ def save_contents(manga: Manga, filename: str = "..\\coloredmanga_parser\\data\\
         with open(filename, 'w', encoding='utf-8') as f_out:
             json.dump(data_json, f_out, indent=2)
     except PermissionError:
-        raise PermissionError("Файл доступен только для чтения. Невозможно произвести запись.")
+        raise PermissionError("Файл доступен только для чтения. Измените атрибуты доступа.")
 
 
 def download_manga(contents: Manga, dir_root: str, is_flatten: bool = False, start_vol: int = 0,

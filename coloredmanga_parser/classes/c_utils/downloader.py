@@ -68,10 +68,6 @@ class Downloader:
         """
         Сохраняет изображение в файл path.
         """
-        # with open(path, 'wb') as f_out:
-        #     # shutil.copyfileobj(data.raw, f_out, length=8 * 1024 * 1024)
-        #     f_out.write(data.content)
-        # data.raw.decode_content = True
         with open(path, 'wb', buffering=0) as f_obj:
             for block in data.iter_content(chunk_size=64*1024):
                 f_obj.write(block)
