@@ -58,7 +58,7 @@ class Volume:
         permitted_path = utils.create_dir(path)
         
         # нам необходимо вести счетчик с номером последней страницы в обработанной главе, чтобы при упрощённой 
-        # иерархии сохранения файлов (is_flatten=True) знать, какой номер будет у следующей страницы главы.
+        # иерархии сохранения файлов (is_flatten=True) знать, какие номера будут у страниц следующей главы.
         last_page_number = 0
         for ch in self.chapters:
             last_page_number = ch.download(permitted_path, is_flatten, page_number=last_page_number)

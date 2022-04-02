@@ -6,14 +6,14 @@ from utility.decorators import timer
 class Parser:
     def __init__(self, data: str) -> None:
         """
-        Класс, разбирающий данные формата html.
+        Класс, вычленяющий необходимую информацию из данных формата html.
         """
         self.data = data
 
     @timer
     def parse_manga_page(self) -> tuple[str, dict[str, dict[str, str]]]:
         """
-        Разбирает главную страницу манги и находит название манги, тома и главы для соответствующих томов.
+        Разбирает главную страницу манги и находит название манги, а так же тома и главы для соответствующих томов.
         """
         parsed_data: dict[str, dict[str, str]] = {}
 

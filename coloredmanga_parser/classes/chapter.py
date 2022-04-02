@@ -12,9 +12,13 @@ class Chapter:
         """
         self.name = name
         self.url = chapter_url
-        self.pages: list[Page] = []
-        self.raw_pages = raw_pages
         self.from_file = from_file
+
+        # список формируется с учётом параметра from_file: либо анализируется страница по адресу self.url, либо
+        # обрабатываются данные формата JSON, лежащие в self.raw_pages.
+        self.pages: list[Page] = []
+        # данные о страницах главы в формате JSON, считанные из файла, если from_file=True, иначе None.
+        self.raw_pages = raw_pages
 
         self.__build_pages()
 
@@ -78,7 +82,7 @@ class Chapter:
         else:
             path = f"{path}{self.name}\\"
             permitted_path = utils.create_dir(path)
-        
+
         # Формируем имена страниц: "001" для обычного режима и "0001" для упрощенной иерархии файлов.
         number = page_number
         for page in self.pages:
@@ -89,5 +93,4 @@ class Chapter:
                 number_str = page.number.rjust(3, "0")
             page.download(permitted_path, number_str)
 
-        return number
-
+        return number  # возвращаем номер последней страницы главы

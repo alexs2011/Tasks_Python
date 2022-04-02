@@ -1,5 +1,6 @@
 from classes.c_utils.downloader import Downloader
 
+
 class Page:
     def __init__(self, page_url: str, n_page: str) -> None:
         """
@@ -20,6 +21,7 @@ class Page:
         """
         Загружает страницу манги и сохраняет её с необходимым расширением.
         """
+        # Определяем расширение файла.
         extension = self.url.split(".")[-1]
         path = f"{path}{page_number}.{extension}"
         downloader = Downloader(self.url)

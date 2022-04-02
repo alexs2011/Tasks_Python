@@ -2,8 +2,6 @@ import os
 import requests
 import json
 
-import urllib3
-
 from utility.decorators import timer, console_log
 
 

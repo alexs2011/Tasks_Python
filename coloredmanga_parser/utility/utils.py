@@ -4,14 +4,16 @@ import os
 from utility.decorators import console_log
 from classes.manga import Manga
 
-# Название манги и глав может содержать символы, запрещённые в именах папок.
-# В этом случае они должны быть удалены.
+# Название манги и глав могут содержать символы, запрещённые в именах папок Windows.
+# В этом случае они должны быть удалены при создании папок.
 WINDOWS_PROHIBITED_DIR_NAME_CHARS = ["<", ">", "*", "?", "/", "\\", "|", ":", '"']
 
 
 def build_contents(link: str, from_file: bool = False) -> Manga:
     """
     Создаёт и возвращает экземпляр класса Manga.
+    В процессе создания происходит загрузка иерархии файлов манги по ссылке link (т.е. томов, глав и страниц) с сайта
+    или из предварительно сохранённого файла JSON в зависимости от параметра from_file.
     """
     return Manga(link, from_file)
 
@@ -19,7 +21,7 @@ def build_contents(link: str, from_file: bool = False) -> Manga:
 @console_log(info='Данные сохранены')
 def save_contents(manga: Manga, filename: str = "..\\coloredmanga_parser\\data\\contents.json") -> None:
     """
-    Сохраняет содержимое, то есть иерархию файлов, класса Manga в файл в формате JSON.
+    Сохраняет содержимое, то есть иерархию томов, глав и страниц, класса Manga в файл в формате JSON.
     """
     data_json = str(manga)
     data_json = json.loads(data_json)
@@ -34,9 +36,10 @@ def save_contents(manga: Manga, filename: str = "..\\coloredmanga_parser\\data\\
 def download_manga(contents: Manga, dir_root: str, is_flatten: bool = False, start_vol: int = 0,
                    end_vol: int = 0) -> None:
     """
-    Загружает и сохраняет в корневую директорию dir_root мангу, сохраняя при этом иерархию томов и глав contents.
+    Загружает и сохраняет в корневую директорию dir_root мангу, сохраняя при этом иерархию томов и глав на основе
+    contents.
     Параметр is_flatten позволяет создавать при сохранении упрощённую иерархию файлов (без папок для глав, т.е. 
-    все страницы хранятся в самой папке тома):
+    все страницы хранятся просто в папке тома):
 
     Иерархия при is_flatten=False                   Иерархия при is_flatten=True
     Manga_name.                                     Manga_name.
@@ -59,8 +62,7 @@ def create_dir(path: str) -> str:
     путь, по которому была создана директория.
     """
     split_path = list(filter(None, path.split("\\")))
-    name = split_path[-1]
-    new_path = split_path[:-1]
+    name, *new_path = split_path
     for ch in WINDOWS_PROHIBITED_DIR_NAME_CHARS:
         name = name.replace(ch, "")
     new_path.append(name)
