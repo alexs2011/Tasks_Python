@@ -2,6 +2,8 @@ import os
 import requests
 import json
 
+import urllib3
+
 from utility.decorators import timer, console_log
 
 
@@ -41,9 +43,9 @@ class Downloader:
         Загружает данные из удалённого источника.
         """
         try:
-            data = requests.get(self.link)
+            data = requests.get(self.link, timeout=10)
         except requests.exceptions.ConnectionError:
-            raise ConnectionError(f"Отсутствует подключение к интернету.")
+            raise TimeoutError(f"Сервер не отвечает на запрос по адресу {self.link}.")
 
         self.__validate_html_data(data)
 
@@ -69,7 +71,7 @@ class Downloader:
         Сохраняет изображение в файл path.
         """
         with open(path, 'wb', buffering=0) as f_obj:
-            for block in data.iter_content(chunk_size=64*1024):
+            for block in data.iter_content(chunk_size=64 * 1024):
                 f_obj.write(block)
 
     @timer
@@ -79,10 +81,13 @@ class Downloader:
         Загружает изображение.
         """
         try:
-            data = requests.get(self.link, stream=True)
+            data = requests.get(self.link, stream=True, timeout=10)
         except requests.exceptions.ConnectionError:
-            raise ConnectionError(f"Отсутствует подключение к интернету.")
+            raise TimeoutError(f"Сервер не отвечает на запрос по адресу {self.link}.")
 
         self.__is_status_code_ok(data)
 
-        self.__save_img(data, path)
+        try:
+            self.__save_img(data, path)
+        except requests.exceptions.ConnectionError:
+            raise TimeoutError(f"Сервер не отвечает на запрос по адресу {self.link}.")
