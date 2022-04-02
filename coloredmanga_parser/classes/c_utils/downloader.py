@@ -1,9 +1,8 @@
 import os
 import requests
-import shutil
 import json
 
-from utility.decorators import timer
+from utility.decorators import timer, console_log
 
 
 class Downloader:
@@ -65,13 +64,24 @@ class Downloader:
             )
 
     @staticmethod
-    def __save_data(data: requests.models.Response, path: str) -> None:
-        data.raw.decode_content = True
-        with open(path, 'wb') as f_out:
-            shutil.copyfileobj(data.raw, f_out)
+    def __save_img(data: requests.models.Response, path: str) -> None:
+        """
+        Сохраняет изображение в файл path.
+        """
+        # with open(path, 'wb') as f_out:
+        #     # shutil.copyfileobj(data.raw, f_out, length=8 * 1024 * 1024)
+        #     f_out.write(data.content)
+        # data.raw.decode_content = True
+        with open(path, 'wb', buffering=0) as f_obj:
+            for block in data.iter_content(chunk_size=64*1024):
+                f_obj.write(block)
 
     @timer
-    def download_page(self, path: str) -> None:
+    @console_log(info={'attr': 'link', 'm': 'загружено'})
+    def download_img(self, path: str) -> None:
+        """
+        Загружает изображение.
+        """
         try:
             data = requests.get(self.link, stream=True)
         except requests.exceptions.ConnectionError:
@@ -79,4 +89,4 @@ class Downloader:
 
         self.__is_status_code_ok(data)
 
-        self.__save_data(data, path)
+        self.__save_img(data, path)

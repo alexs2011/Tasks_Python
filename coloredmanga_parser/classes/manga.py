@@ -50,7 +50,7 @@ class Manga:
 
         return manga_vols
 
-    @console_log(info='обработана главная страница')
+    # @console_log(info='обработана главная страница')
     def __get_vols_from_file(self) -> list[dict]:
         """
         На основе файла JSON заполняет поля класса Manga. Возвращает список томов для дальнейшей обработки.
@@ -96,12 +96,18 @@ class Manga:
 
     @staticmethod
     def __validate_downloading_params(start_vol: int, end_vol: int) -> None:
+        """
+        Проверяет правильность параметров ограничения начального и конечного томов для сохранения.
+        """
         if start_vol < 0 or end_vol < 0:
             raise ValueError("Номер тома не может быть меньше 0.")
         if start_vol != 0 and end_vol != 0 and start_vol >= end_vol:
             raise ValueError("Номер начального тома больше или равен номеру конечного.")
 
     def download(self, dir_root: str, is_flatten: bool, start_vol: int, end_vol: int) -> None:
+        """
+        Загружает тома манги с учетом опциональных ограничений start_vol и end_vol, и сохраняет их.
+        """
         self.__validate_downloading_params(start_vol, end_vol)
 
         path = f"{dir_root}{self.name}\\"

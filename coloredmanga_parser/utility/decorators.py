@@ -53,7 +53,6 @@ def console_log(_func=None, *, info=None):
                 print(f"с сообщением: {info['m']} {attr_val}")
             else:
                 print(f"с сообщением: {info}" if info else "")
-            print()
 
             return val
         return wrapper

@@ -51,9 +51,14 @@ class Volume:
             self.__build_chapters_from_url(chapters)
 
     def download(self, path: str, is_flatten: bool) -> None:
+        """
+        Загружает главы манги и сохраняет их.
+        """
         path = f"{path}{self.name}\\"
         permitted_path = utils.create_dir(path)
-
+        
+        # нам необходимо вести счетчик с номером последней страницы в обработанной главе, чтобы при упрощённой 
+        # иерархии сохранения файлов (is_flatten=True) знать, какой номер будет у следующей страницы главы.
         last_page_number = 0
         for ch in self.chapters:
             last_page_number = ch.download(permitted_path, is_flatten, page_number=last_page_number)

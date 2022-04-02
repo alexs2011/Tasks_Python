@@ -70,12 +70,16 @@ class Chapter:
             self.__build_pages_from_url(chapter_pages)
 
     def download(self, path: str, is_flatten: bool, page_number: int = 0) -> int:
+        """
+        Загружает страницы манги и сохраняет их.
+        """
         if is_flatten:
             permitted_path = path
         else:
             path = f"{path}{self.name}\\"
             permitted_path = utils.create_dir(path)
-
+        
+        # Формируем имена страниц: "001" для обычного режима и "0001" для упрощенной иерархии файлов.
         number = page_number
         for page in self.pages:
             if is_flatten:

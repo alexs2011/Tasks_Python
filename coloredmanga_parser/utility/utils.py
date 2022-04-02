@@ -33,10 +33,31 @@ def save_contents(manga: Manga, filename: str = "..\\coloredmanga_parser\\data\\
 
 def download_manga(contents: Manga, dir_root: str, is_flatten: bool = False, start_vol: int = 0,
                    end_vol: int = 0) -> None:
+    """
+    Загружает и сохраняет в корневую директорию dir_root мангу, сохраняя при этом иерархию томов и глав contents.
+    Параметр is_flatten позволяет создавать при сохранении упрощённую иерархию файлов (без папок для глав, т.е. 
+    все страницы хранятся в самой папке тома):
+
+    Иерархия при is_flatten=False                   Иерархия при is_flatten=True
+    Manga_name.                                     Manga_name.
+    +---Volume...                                   \---Volume...
+    |   \---Chapter...                                  0001.jpg
+    |           001.jpg                                 0002.jpg
+    |           002.jpg                                 0003.jpg
+    |           003.jpg
+
+    Параметры start_vol и end_vol позволяют задать начальный и конечный тома для скачивания. Если значение равно 0, то
+    ограничений нет. Если параметр end_vol задан, то производится скачивание томов до него не включительно, т.е. 
+    при start_vol=5, end_vol=9 будут скачаны тома 5, 6, 7, 8.
+    """
     contents.download(dir_root, is_flatten, start_vol, end_vol)
 
 
 def create_dir(path: str) -> str:
+    """
+    Создаёт директорию по пути path, при этом из пути удаляются все неподдерживаемые Windows символы. Возвращает 
+    путь, по которому была создана директория.
+    """
     split_path = list(filter(None, path.split("\\")))
     name = split_path[-1]
     new_path = split_path[:-1]

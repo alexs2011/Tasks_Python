@@ -2,7 +2,9 @@ from utility import utils
 
 
 def main():
-    file_contents = "data/contents_shrink.json"
+    # файл со структурой манги
+    file_contents = "data/contents_full.json"
+    # Корневая директория для сохранения манги.
     dir_root = "D:\\"
 
     # загрузка структуры манги с сайта и её сохранение в файле формата JSON.
@@ -12,10 +14,12 @@ def main():
 
     # загрузка структуры манги из файла.
     manga_contents = utils.build_contents(file_contents, from_file=True)
+
     # проверочное сохранение в этот же файл.
     # utils.save_contents(manga_contents, filename=file_contents)
+
     # скачивание манги
-    utils.download_manga(manga_contents, dir_root, is_flatten=False)
+    utils.download_manga(manga_contents, dir_root, start_vol=78, end_vol=79, is_flatten=False)
 
 
 if __name__ == '__main__':

@@ -17,7 +17,10 @@ class Page:
                f'\t\t\t"number": "{self.number}"\n}}'
 
     def download(self, path: str, page_number: str) -> None:
+        """
+        Загружает страницу манги и сохраняет её с необходимым расширением.
+        """
         extension = self.url.split(".")[-1]
         path = f"{path}{page_number}.{extension}"
         downloader = Downloader(self.url)
-        downloader.download_page(path)
+        downloader.download_img(path)
