@@ -83,9 +83,9 @@ class Chapter:
             path = f"{path}{self.name}\\"
             permitted_path = utils.create_dir(path)
 
-        # Формируем имена страниц: "001" для обычного режима и "0001" для упрощённой иерархии файлов.
         number = page_number
         for page in self.pages:
+            # Формируем имена страниц: "001" для обычного режима и "0001" для упрощённой иерархии файлов.
             if is_flatten:
                 number_str = str(number).rjust(4, "0")
             else:
