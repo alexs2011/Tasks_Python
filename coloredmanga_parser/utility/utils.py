@@ -1,7 +1,7 @@
 import json
 import os
 
-from utility.decorators import console_log
+from utility.decorators import console_log, timer
 from classes.manga import Manga
 
 # Название манги и глав могут содержать символы, запрещённые в именах папок Windows.
@@ -9,6 +9,7 @@ from classes.manga import Manga
 WINDOWS_PROHIBITED_DIR_NAME_CHARS = ["<", ">", "*", "?", "/", "\\", "|", ":", '"']
 
 
+@timer
 def build_contents(link: str, from_file: bool = False) -> Manga:
     """
     Создаёт и возвращает экземпляр класса Manga.
@@ -34,6 +35,7 @@ def save_contents(manga: Manga, filename: str = "..\\coloredmanga_parser\\data\\
         raise PermissionError("Файл доступен только для чтения. Измените атрибуты доступа.")
 
 
+@timer
 def download_manga(contents: Manga, dir_root: str, is_flatten: bool = False, start_vol: int = 0,
                    end_vol: int = 0) -> None:
     """
