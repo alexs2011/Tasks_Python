@@ -23,5 +23,4 @@ class Page:
         extension = self.url.split(".")[-1]
         path = f"{path}{page_number}.{extension}"
         downloader = Downloader(self.url)
-        # downloader.download_img(path)
-        print(path)
+        downloader.download_img(path)

@@ -11,7 +11,7 @@ def timer(func):
         start = time.time()
         val = func(*args, **kwargs)
         end = time.time()
-        print(f"Время выполнения {func.__name__}: {end - start:4f} c.")
+        print(f"[INFO] Время выполнения {func.__name__}: {end - start:4f} c.")
 
         return val
 
@@ -43,7 +43,7 @@ def console_log(_func=None, *, info=None):
         def wrapper(self, *args, **kwargs):
             val = func(self, *args, **kwargs)
 
-            print(f"Выполнено: {func.__name__}", end=' ')
+            print(f"[INFO] Выполнено: {func.__name__}", end=' ')
             allowed_keys = {"attr", "m"}
             if isinstance(info, dict) and set(info.keys()) == allowed_keys:
                 try:
