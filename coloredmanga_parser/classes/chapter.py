@@ -73,7 +73,7 @@ class Chapter:
             chapter_pages = self.__get_pages_from_url()
             self.__build_pages_from_url(chapter_pages)
 
-    def download(self, path: str, is_flatten: bool, page_number: int = 0) -> int:
+    def download(self, path: str, page_number: int, is_flatten: bool) -> None:
         """
         Загружает страницы манги и сохраняет их.
         """
@@ -83,14 +83,14 @@ class Chapter:
             path = f"{path}{self.name}\\"
             permitted_path = utils.create_dir(path)
 
-        # Формируем имена страниц: "001" для обычного режима и "0001" для упрощенной иерархии файлов.
+        # Формируем имена страниц: "001" для обычного режима и "0001" для упрощённой иерархии файлов.
         number = page_number
         for page in self.pages:
             if is_flatten:
-                number += 1
                 number_str = str(number).rjust(4, "0")
             else:
-                number_str = page.number.rjust(3, "0")
-            page.download(permitted_path, number_str)
+                number_str = str(number).rjust(3, "0")
 
-        return number  # возвращаем номер последней страницы главы
+            number += 1
+
+            page.download(permitted_path, number_str)
