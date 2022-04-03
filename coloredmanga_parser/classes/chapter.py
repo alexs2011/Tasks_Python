@@ -6,7 +6,7 @@ from classes.page import Page
 
 
 class Chapter:
-    def __init__(self, name: str, chapter_url: str, raw_pages: list[dict] = None, from_file: bool = False) -> None:
+    def __init__(self, name: str, chapter_url: str, raw_pages: list[str] = None, from_file: bool = False) -> None:
         """
         Класс, хранящий название главы и список url-адресов её страниц.
         """
@@ -52,15 +52,15 @@ class Chapter:
         """`
         Формирует список страниц для данных, полученных из удалённого источника.
         """
-        for i, page in enumerate(chapter_pages, 1):
-            self.pages.append(Page(page, str(i)))
+        for page in chapter_pages:
+            self.pages.append(Page(page))
 
     def __build_pages_from_file(self) -> None:
         """`
         Формирует список страниц для данных, полученных из файла.
         """
         for page in self.raw_pages:
-            self.pages.append(Page(page['url'], page['number']))
+            self.pages.append(Page(page))
 
     @console_log(info={'attr': 'name', 'm': 'обработано'})
     def __build_pages(self) -> None:

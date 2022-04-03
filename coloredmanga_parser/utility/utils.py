@@ -24,6 +24,7 @@ def save_contents(manga: Manga, filename: str = "..\\coloredmanga_parser\\data\\
     Сохраняет содержимое, то есть иерархию томов, глав и страниц, класса Manga в файл в формате JSON.
     """
     data_json = str(manga)
+    # print(data_json)
     data_json = json.loads(data_json)
 
     try:
