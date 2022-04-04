@@ -10,10 +10,12 @@ class Page:
 
     def __repr__(self):
         """
-        Строковое представление класса в формате JSON.
+        Строковое представление класса.
         """
-        return f'' \
-               f'\n\t\t\t\n"{self.url}"\n'
+        return f'\n\t\t\t\n{self.url}\n'
+
+    def to_JSON(self):
+        return self.url
 
     def download(self, path: str, page_number: str) -> None:
         """

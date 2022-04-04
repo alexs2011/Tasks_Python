@@ -23,18 +23,25 @@ class Manga:
 
     def __repr__(self):
         """
-        Строковое представление класса в формате JSON.
+        Строковое представление класса.
         """
-        return '' \
-               f'{{\n"url": "{self.link}",\n' \
-               f'"name": "{self.name}",\n' \
-               f'"volumes": {self.volumes}\n}}'
+        return f'name: {self.name},\n' \
+               f'url: {self.link},\n' \
+               f'volumes: {self.volumes}\n'
 
     def __len__(self) -> int:
         """
         Возвращает количество томов в манге.
         """
         return len(self.volumes)
+
+    def to_JSON(self):
+        manga_dict = {
+            "name": self.name,
+            "url": self.link,
+            "volumes": [volume.to_JSON() for volume in self.volumes]
+        }
+        return manga_dict
 
     @console_log(info='обработана главная страница')
     def __get_vols_from_url(self) -> dict[str, dict[str, str]]:
@@ -81,7 +88,7 @@ class Manga:
         Заполняет список томов для данных, полученных из файла.
         """
         for vol in manga_vols:
-            self.volumes.append(Volume(vol['vol_name'], vol['chapters'], from_file=True))
+            self.volumes.append(Volume(vol['name'], vol['chapters'], from_file=True))
 
     def __build_volumes(self) -> None:
         """

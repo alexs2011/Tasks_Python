@@ -24,12 +24,19 @@ class Chapter:
 
     def __repr__(self):
         """
-        Строковое представление класса в формате JSON.
+        Строковое представление класса.
         """
-        return '' \
-               f'\n\t\t{{\n"name": "{self.name}",\n' \
-               f'\t\t"url": "{self.url}",\n' \
-               f'\t\t"pages": {self.pages}\n}}'
+        return f'\n\t\t\nname: {self.name},\n' \
+               f'\t\turl: {self.url},\n' \
+               f'\t\tpages: {self.pages}\n'
+
+    def to_JSON(self):
+        chapter_dict = {
+            "name": self.name,
+            "url": self.url,
+            "pages": [page.to_JSON() for page in self.pages]
+        }
+        return chapter_dict
 
     def __len__(self) -> int:
         """

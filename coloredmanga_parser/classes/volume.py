@@ -15,17 +15,23 @@ class Volume:
 
     def __repr__(self):
         """
-        Строковое представление класса в формате JSON.
+        Строковое представление класса.
         """
-        return '' \
-               f'\n\t{{\n"vol_name": "{self.name}",\n' \
-               f'\t"chapters": {self.chapters}\n}}'
+        return f'\n\t\nvol_name: {self.name},\n' \
+               f'\tchapters: {self.chapters}\n'
 
     def __len__(self) -> int:
         """
         Возвращает количество глав в томе.
         """
         return len(self.chapters)
+
+    def to_JSON(self):
+        volume_dict = {
+            "name": self.name,
+            "chapters": [chapter.to_JSON() for chapter in self.chapters]
+        }
+        return volume_dict
 
     def __build_chapters_from_url(self, chapters: dict[str, str]) -> None:
         """`

@@ -1,9 +1,9 @@
 {
-  "url": "https://coloredmanga.com/manga/one-piece/",
   "name": "One Piece - Digital Colored Comics (Official Translation)",
+  "url": "https://coloredmanga.com/manga/one-piece/",
   "volumes": [
     {
-      "vol_name": "Volume 1",
+      "name": "Volume 1",
       "chapters": [
         {
           "name": "Chapter 1 - Romance Dawn",
@@ -262,7 +262,7 @@
       ]
     },
     {
-      "vol_name": "Volume 2",
+      "name": "Volume 2",
       "chapters": [
         {
           "name": "Chapter 9 - Femme Fatale",
@@ -520,7 +520,7 @@
       ]
     },
     {
-      "vol_name": "Volume 3",
+      "name": "Volume 3",
       "chapters": [
         {
           "name": "Chapter 18 - The Pirate Buggy the Clown",
@@ -776,7 +776,7 @@
       ]
     },
     {
-      "vol_name": "Volume 4",
+      "name": "Volume 4",
       "chapters": [
         {
           "name": "Chapter 27 - True Lies",
@@ -1027,7 +1027,7 @@
       ]
     },
     {
-      "vol_name": "Volume 5",
+      "name": "Volume 5",
       "chapters": [
         {
           "name": "Chapter 36 - After Them!!",
@@ -1278,7 +1278,7 @@
       ]
     },
     {
-      "vol_name": "Volume 6",
+      "name": "Volume 6",
       "chapters": [
         {
           "name": "Chapter 45 - Before the Storm",
@@ -1527,7 +1527,7 @@
       ]
     },
     {
-      "vol_name": "Volume 7",
+      "name": "Volume 7",
       "chapters": [
         {
           "name": "Chapter 54 - Pearl",
@@ -1778,7 +1778,7 @@
       ]
     },
     {
-      "vol_name": "Volume 8",
+      "name": "Volume 8",
       "chapters": [
         {
           "name": "Chapter 63 - I Won't Die",
@@ -2027,7 +2027,7 @@
       ]
     },
     {
-      "vol_name": "Volume 9",
+      "name": "Volume 9",
       "chapters": [
         {
           "name": "Chapter 72 - Proper Living",
@@ -2300,7 +2300,7 @@
       ]
     },
     {
-      "vol_name": "Volume 10",
+      "name": "Volume 10",
       "chapters": [
         {
           "name": "Chapter 82 - OK, Let's Stand Up!",
@@ -2551,7 +2551,7 @@
       ]
     },
     {
-      "vol_name": "Volume 11",
+      "name": "Volume 11",
       "chapters": [
         {
           "name": "Chapter 91 - Darts",
@@ -2800,7 +2800,7 @@
       ]
     },
     {
-      "vol_name": "Volume 12",
+      "name": "Volume 12",
       "chapters": [
         {
           "name": "Chapter 100 - The Legend Begins",
@@ -3048,7 +3048,7 @@
       ]
     },
     {
-      "vol_name": "Volume 13",
+      "name": "Volume 13",
       "chapters": [
         {
           "name": "Chapter 109 - A Question of Duty",
@@ -3296,7 +3296,7 @@
       ]
     },
     {
-      "vol_name": "Volume 14",
+      "name": "Volume 14",
       "chapters": [
         {
           "name": "Chapter 118 - Someone's Out There",
@@ -3546,7 +3546,7 @@
       ]
     },
     {
-      "vol_name": "Volume 15",
+      "name": "Volume 15",
       "chapters": [
         {
           "name": "Chapter 127 - Snail-o-phone",
@@ -3821,7 +3821,7 @@
       ]
     },
     {
-      "vol_name": "Volume 16",
+      "name": "Volume 16",
       "chapters": [
         {
           "name": "Chapter 137 - Avalanche",
@@ -4070,7 +4070,7 @@
       ]
     },
     {
-      "vol_name": "Volume 17",
+      "name": "Volume 17",
       "chapters": [
         {
           "name": "Chapter 146 - Battle to Defend the Kingdom",
@@ -4338,7 +4338,7 @@
       ]
     },
     {
-      "vol_name": "Volume 18",
+      "name": "Volume 18",
       "chapters": [
         {
           "name": "Chapter 156 - Oh Come My Way Days",
@@ -4445,7 +4445,7 @@
           ]
         },
         {
-          "name": "Chapter 160 - Spiders Caf\u00e9 at Eight O'Clock",
+          "name": "Chapter 160 - Spiders Café at Eight O'Clock",
           "url": "https://coloredmanga.com/manga/one-piece/volume-18/chapter-160-spiders-cafe-at-eight-oclock/",
           "pages": [
             "https://coloredmanga.com/wp-content/uploads/WP-manga/data/manga_617f9817c8904/514fda07722fafd0350e208e1b170e30/085-stitch.jpg",
@@ -4625,7 +4625,7 @@
       ]
     },
     {
-      "vol_name": "Volume 19",
+      "name": "Volume 19",
       "chapters": [
         {
           "name": "Chapter 167 - Battlefront",
@@ -4905,7 +4905,7 @@
       ]
     },
     {
-      "vol_name": "Volume 20",
+      "name": "Volume 20",
       "chapters": [
         {
           "name": "Chapter 177 - 30 Million vs. 81 Million",
@@ -5183,7 +5183,7 @@
       ]
     },
     {
-      "vol_name": "Volume 21",
+      "name": "Volume 21",
       "chapters": [
         {
           "name": "Chapter 187 - Stalemate",
@@ -5430,7 +5430,7 @@
       ]
     },
     {
-      "vol_name": "Volume 22",
+      "name": "Volume 22",
       "chapters": [
         {
           "name": "Chapter 196 - 1",
@@ -5705,7 +5705,7 @@
       ]
     },
     {
-      "vol_name": "Volume 23",
+      "name": "Volume 23",
       "chapters": [
         {
           "name": "Chapter 206 - Ignition",
@@ -6002,7 +6002,7 @@
       ]
     },
     {
-      "vol_name": "Volume 24",
+      "name": "Volume 24",
       "chapters": [
         {
           "name": "Chapter 217 - Stowaway",
@@ -6277,7 +6277,7 @@
       ]
     },
     {
-      "vol_name": "Volume 25",
+      "name": "Volume 25",
       "chapters": [
         {
           "name": "Chapter 227 - Noland the Liar",
@@ -6551,7 +6551,7 @@
       ]
     },
     {
-      "vol_name": "Volume 26",
+      "name": "Volume 26",
       "chapters": [
         {
           "name": "Chapter 237 - High in the Sky",
@@ -6813,7 +6813,7 @@
       ]
     },
     {
-      "vol_name": "Volume 27",
+      "name": "Volume 27",
       "chapters": [
         {
           "name": "Chapter 247 - Ball Challenge",
@@ -7058,7 +7058,7 @@
       ]
     },
     {
-      "vol_name": "Volume 28",
+      "name": "Volume 28",
       "chapters": [
         {
           "name": "Chapter 256 - Wyper the Berserker",
@@ -7307,7 +7307,7 @@
       ]
     },
     {
-      "vol_name": "Volume 29",
+      "name": "Volume 29",
       "chapters": [
         {
           "name": "Chapter 265 - Pirate Robin vs. Heavenly Forces Commander Yama",
@@ -7603,7 +7603,7 @@
       ]
     },
     {
-      "vol_name": "Volume 30",
+      "name": "Volume 30",
       "chapters": [
         {
           "name": "Chapter 276 - Shandian Rhythm",
@@ -7875,7 +7875,7 @@
       ]
     },
     {
-      "vol_name": "Volume 31",
+      "name": "Volume 31",
       "chapters": [
         {
           "name": "Chapter 286 - The Shandoran Demon",
@@ -8147,7 +8147,7 @@
       ]
     },
     {
-      "vol_name": "Volume 32",
+      "name": "Volume 32",
       "chapters": [
         {
           "name": "Chapter 296 - Ultimate Sky Situation",
@@ -8412,7 +8412,7 @@
       ]
     },
     {
-      "vol_name": "Volume 33",
+      "name": "Volume 33",
       "chapters": [
         {
           "name": "Chapter 306 - Donut Race!",
@@ -8713,7 +8713,7 @@
       ]
     },
     {
-      "vol_name": "Volume 34",
+      "name": "Volume 34",
       "chapters": [
         {
           "name": "Chapter 317 - K.O",
@@ -9008,7 +9008,7 @@
       ]
     },
     {
-      "vol_name": "Volume 35",
+      "name": "Volume 35",
       "chapters": [
         {
           "name": "Chapter 328 - The Pirate Abduction Incident",
@@ -9254,7 +9254,7 @@
       ]
     },
     {
-      "vol_name": "Volume 36",
+      "name": "Volume 36",
       "chapters": [
         {
           "name": "Chapter 337 - Protectors of the City of Water",
@@ -9532,7 +9532,7 @@
       ]
     },
     {
-      "vol_name": "Volume 37",
+      "name": "Volume 37",
       "chapters": [
         {
           "name": "Chapter 347 - Six Powers",
@@ -9828,7 +9828,7 @@
       ]
     },
     {
-      "vol_name": "Volume 38",
+      "name": "Volume 38",
       "chapters": [
         {
           "name": "Chapter 358 - Reactivation",
@@ -10100,7 +10100,7 @@
       ]
     },
     {
-      "vol_name": "Volume 39",
+      "name": "Volume 39",
       "chapters": [
         {
           "name": "Chapter 368 - Sea Train Battle Game",
@@ -10371,7 +10371,7 @@
       ]
     },
     {
-      "vol_name": "Volume 40",
+      "name": "Volume 40",
       "chapters": [
         {
           "name": "Chapter 378 - Casualties",
@@ -10657,7 +10657,7 @@
       ]
     },
     {
-      "vol_name": "Volume 41",
+      "name": "Volume 41",
       "chapters": [
         {
           "name": "Chapter 389 - Response",
@@ -10952,7 +10952,7 @@
       ]
     },
     {
-      "vol_name": "Volume 42",
+      "name": "Volume 42",
       "chapters": [
         {
           "name": "Chapter 400 - The Key to Freedom",
@@ -11061,7 +11061,7 @@
           ]
         },
         {
-          "name": "Chapter 404 - Franky vs. Fukur\u00f4",
+          "name": "Chapter 404 - Franky vs. Fukurô",
           "url": "https://coloredmanga.com/manga/one-piece/volume-42/chapter-404-franky-vs-fukuro/",
           "pages": [
             "https://coloredmanga.com/wp-content/uploads/WP-manga/data/manga_617f9817c8904/0509ccd24f75ebe6542d903cc6631bf6/087.jpg",
@@ -11225,7 +11225,7 @@
       ]
     },
     {
-      "vol_name": "Volume 43",
+      "name": "Volume 43",
       "chapters": [
         {
           "name": "Chapter 410 - Super-Size Nami",
@@ -11505,7 +11505,7 @@
       ]
     },
     {
-      "vol_name": "Volume 44",
+      "name": "Volume 44",
       "chapters": [
         {
           "name": "Chapter 420 - Buster Call",
@@ -11794,7 +11794,7 @@
       ]
     },
     {
-      "vol_name": "Volume 45",
+      "name": "Volume 45",
       "chapters": [
         {
           "name": "Chapter 431 - Fist of Love",
@@ -12067,7 +12067,7 @@
       ]
     },
     {
-      "vol_name": "Volume 46",
+      "name": "Volume 46",
       "chapters": [
         {
           "name": "Chapter 441 - Duel on Banaro Island",
@@ -12317,7 +12317,7 @@
       ]
     },
     {
-      "vol_name": "Volume 47",
+      "name": "Volume 47",
       "chapters": [
         {
           "name": "Chapter 450 - Night of the General Zombies",
@@ -12596,7 +12596,7 @@
       ]
     },
     {
-      "vol_name": "Volume 48",
+      "name": "Volume 48",
       "chapters": [
         {
           "name": "Chapter 460 - Conquest Before Dawn!!",
@@ -12889,7 +12889,7 @@
       ]
     },
     {
-      "vol_name": "Volume 49",
+      "name": "Volume 49",
       "chapters": [
         {
           "name": "Chapter 471 - My Friend",
@@ -13173,7 +13173,7 @@
       ]
     },
     {
-      "vol_name": "Volume 50",
+      "name": "Volume 50",
       "chapters": [
         {
           "name": "Chapter 482 - Morning is Coming",
@@ -13448,7 +13448,7 @@
       ]
     },
     {
-      "vol_name": "Volume 76",
+      "name": "Volume 76",
       "chapters": [
         {
           "name": "Chapter 753 - Battle",
@@ -13721,7 +13721,7 @@
       ]
     },
     {
-      "vol_name": "Volume 77",
+      "name": "Volume 77",
       "chapters": [
         {
           "name": "Chapter 764 - White Monster",
@@ -14013,7 +14013,7 @@
       ]
     },
     {
-      "vol_name": "Volume 78",
+      "name": "Volume 78",
       "chapters": [
         {
           "name": "Chapter 776 - The Hero of the Coliseum",
@@ -14271,7 +14271,7 @@
       ]
     },
     {
-      "vol_name": "Volume 79",
+      "name": "Volume 79",
       "chapters": [
         {
           "name": "Chapter 786 - Gyats",
@@ -14522,7 +14522,7 @@
       ]
     },
     {
-      "vol_name": "Volume 80",
+      "name": "Volume 80",
       "chapters": [
         {
           "name": "Chapter 796 - Soldier's Conviction",
@@ -14790,7 +14790,7 @@
       ]
     },
     {
-      "vol_name": "Volume 81",
+      "name": "Volume 81",
       "chapters": [
         {
           "name": "Chapter 807 - Ten Days Earlier",
@@ -15053,7 +15053,7 @@
       ]
     },
     {
-      "vol_name": "Volume 82",
+      "name": "Volume 82",
       "chapters": [
         {
           "name": "Chapter 817 - Raizo of the Mist",
@@ -15343,7 +15343,7 @@
       ]
     },
     {
-      "vol_name": "Volume 83",
+      "name": "Volume 83",
       "chapters": [
         {
           "name": "Chapter 828 - 1 and 2",
@@ -15616,7 +15616,7 @@
       ]
     },
     {
-      "vol_name": "Volume 84",
+      "name": "Volume 84",
       "chapters": [
         {
           "name": "Chapter 839 - I Owe You My Life!",
@@ -15863,7 +15863,7 @@
       ]
     },
     {
-      "vol_name": "Volume 85",
+      "name": "Volume 85",
       "chapters": [
         {
           "name": "Chapter 849 - Chobro in the Land of Mirrors",
@@ -16112,7 +16112,7 @@
       ]
     },
     {
-      "vol_name": "Volume 86",
+      "name": "Volume 86",
       "chapters": [
         {
           "name": "Chapter 859 - Emperor Assassination Plan",
@@ -16369,7 +16369,7 @@
       ]
     },
     {
-      "vol_name": "Volume 87",
+      "name": "Volume 87",
       "chapters": [
         {
           "name": "Chapter 870 - Parting",
@@ -16622,7 +16622,7 @@
       ]
     },
     {
-      "vol_name": "Volume 88",
+      "name": "Volume 88",
       "chapters": [
         {
           "name": "Chapter 880 - Zero Escape",
@@ -16868,7 +16868,7 @@
       ]
     },
     {
-      "vol_name": "Volume 89",
+      "name": "Volume 89",
       "chapters": [
         {
           "name": "Chapter 890 - Big Mom on the Ship",
@@ -17133,7 +17133,7 @@
       ]
     },
     {
-      "vol_name": "Volume 90",
+      "name": "Volume 90",
       "chapters": [
         {
           "name": "Chapter 901 - Don't Let Even Death Stop You!!!",
@@ -17386,7 +17386,7 @@
       ]
     },
     {
-      "vol_name": "Volume 91",
+      "name": "Volume 91",
       "chapters": [
         {
           "name": "Chapter 911 - Adventure in the Land of Samurai",
@@ -17663,7 +17663,7 @@
       ]
     },
     {
-      "vol_name": "Volume 92",
+      "name": "Volume 92",
       "chapters": [
         {
           "name": "Chapter 922 - Supreme Commander Kaido of the Animal Kingdom Pirates",
@@ -17904,7 +17904,7 @@
       ]
     },
     {
-      "vol_name": "Volume 93",
+      "name": "Volume 93",
       "chapters": [
         {
           "name": "Chapter 932 - Shogun and Oiran",
@@ -18175,7 +18175,7 @@
       ]
     },
     {
-      "vol_name": "Volume 94",
+      "name": "Volume 94",
       "chapters": [
         {
           "name": "Chapter 943 - SMILE",

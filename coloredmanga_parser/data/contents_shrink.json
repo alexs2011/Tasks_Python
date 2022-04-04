@@ -1,9 +1,9 @@
 {
-  "url": "https://coloredmanga.com/manga/one-piece/",
   "name": "One Piece - Digital Colored Comics (Official Translation)",
+  "url": "https://coloredmanga.com/manga/one-piece/",
   "volumes": [
     {
-      "vol_name": "Volume 1",
+      "name": "Volume 1",
       "chapters": [
         {
           "name": "Chapter 1 - Romance Dawn",
@@ -262,7 +262,7 @@
       ]
     },
     {
-      "vol_name": "Volume 2",
+      "name": "Volume 2",
       "chapters": [
         {
           "name": "Chapter 9 - Femme Fatale",
