@@ -50,9 +50,10 @@ class Volume:
         else:
             self.__build_chapters_from_url(chapters)
 
-    def download(self, path: str, is_flatten: bool) -> None:
+    def download(self, path: str, is_flatten: bool, start_with: int, end_with: int) -> None:
         """
-        Загружает главы манги и сохраняет их.
+        Загружает главы манги с учетом опциональных ограничений start_with и end_with и сохраняет их.
+        Данные ограничения могут действовать только при отсутствии у манги томов; в ином случае загружаются все главы.
         """
         path = f"{path}{self.name}\\"
         permitted_path = utils.create_dir(path)
@@ -61,6 +62,8 @@ class Volume:
         # иначе он равен сумме количества страниц ранее обработанных глав.
         ch_start_page_number = 1
         for ch in self.chapters:
-            ch.download(permitted_path, ch_start_page_number, is_flatten)
-            if is_flatten:
-                ch_start_page_number += len(ch.pages)
+            ch_num = int(ch.name.split()[1])
+            if start_with <= ch_num < end_with:
+                ch.download(permitted_path, ch_start_page_number, is_flatten)
+                if is_flatten:
+                    ch_start_page_number += len(ch.pages)

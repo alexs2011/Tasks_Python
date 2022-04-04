@@ -24,7 +24,7 @@ def main():
     # utils.save_contents(manga_contents, filename=file_contents)
 
     # Скачивание манги.
-    utils.download_manga(manga_contents, dir_root, start_vol=78, end_vol=79, is_flatten=True)
+    utils.download_manga(manga_contents, dir_root, start_with=78, end_with=79, is_flatten=True)
 
 
 if __name__ == '__main__':

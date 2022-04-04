@@ -36,8 +36,8 @@ def save_contents(manga: Manga, filename: str = "..\\coloredmanga_parser\\data\\
 
 
 @timer
-def download_manga(contents: Manga, dir_root: str, is_flatten: bool = False, start_vol: int = 0,
-                   end_vol: int = 0) -> None:
+def download_manga(contents: Manga, dir_root: str, is_flatten: bool = False, start_with: int = 0,
+                   end_with: int = 0) -> None:
     """
     Загружает и сохраняет в корневую директорию dir_root мангу, сохраняя при этом иерархию томов и глав на основе
     contents.
@@ -52,11 +52,12 @@ def download_manga(contents: Manga, dir_root: str, is_flatten: bool = False, sta
     |           002.jpg                                 0003.jpg
     |           003.jpg
 
-    Параметры start_vol и end_vol позволяют задать начальный и конечный тома для скачивания. Если значение равно 0, то
-    ограничений нет. Если параметр end_vol задан, то производится скачивание томов до него не включительно, т.е. 
-    при start_vol=5, end_vol=9 будут скачаны тома 5, 6, 7, 8.
+    Если у манги есть тома, то параметры start_with и end_with позволяют задать начальный и конечный тома для
+    скачивания. Если значение равно 0, то ограничений нет. Если параметр end_with задан, то производится скачивание
+    томов до него не включительно, т.е. при start_with=5, end_with=9 будут скачаны тома 5, 6, 7, 8.
+    Если томов у манги на сайте нет (только список глав), то данные параметры будут применены к главам.
     """
-    contents.download(dir_root, is_flatten, start_vol, end_vol)
+    contents.download(dir_root, is_flatten, start_with, end_with)
 
 
 def create_dir(path: str) -> str:

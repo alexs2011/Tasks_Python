@@ -94,38 +94,42 @@ class Manga:
             manga_vols = self.__get_vols_from_url()
             self.__build_vols_from_utl(manga_vols)
 
-    def __validate_downloading_params(self, start_vol: int, end_vol: int) -> None:
+    @staticmethod
+    def __validate_downloading_params(start_with: int, end_with: int) -> None:
         """
-        Проверяет правильность параметров ограничения начального и конечного томов для сохранения.
+        Проверяет правильность параметров ограничения начального и конечного томов (глав, в случае, если томов
+        у манги нет) для сохранения.
         """
-        if start_vol != 0 or end_vol != 0:
-            if len(self.volumes) == 1 and self.volumes[0].name == "No Volumes":
-                raise ValueError(
-                    "У данной манги нет томов, только список глав. Параметры start_vol и end_vol недоступны."
-                )
-        if start_vol < 0 or end_vol < 0:
-            raise ValueError("Номер тома не может быть меньше 0.")
-        if start_vol != 0 and end_vol != 0:
-            if start_vol >= end_vol:
-                raise ValueError("Номер начального тома больше или равен номеру конечного.")
+        if start_with < 0 or end_with < 0:
+            raise ValueError("Номер тома или главы не может быть меньше 0.")
+        if start_with != 0 and end_with != 0:
+            if start_with >= end_with:
+                raise ValueError("Номер начального тома или главы больше или равен номеру конечного.")
 
-    def download(self, dir_root: str, is_flatten: bool, start_vol: int, end_vol: int) -> None:
+    def download(self, dir_root: str, is_flatten: bool, start_with: int, end_with: int) -> None:
         """
-        Загружает тома манги с учетом опциональных ограничений start_vol и end_vol, и сохраняет их.
+        Загружает тома манги с учетом опциональных ограничений start_with и end_with, и сохраняет их.
+        Если томов у манги нет, то данные ограничения применяются к главам.
         """
-        self.__validate_downloading_params(start_vol, end_vol)
+        self.__validate_downloading_params(start_with, end_with)
 
         path = f"{dir_root}{self.name}\\"
         permitted_path = utils.create_dir(path)
 
-        if end_vol == 0:
-            end_vol = math.inf
+        if end_with == 0:
+            end_with = math.inf
 
         for vol in self.volumes:
             # У некоторых манг на сайте нет томов, только главы. Обрабатываем такой случай.
-            if not (len(self.volumes) == 1 and self.volumes[0].name == "No Volumes"):
-                vol_num = int(vol.name.split()[1])
+            if len(self.volumes) == 1 and self.volumes[0].name == "No Volumes":
+                vol_num = start_with
+                start_with_ch = start_with
+                end_with_ch = end_with
             else:
-                vol_num = 1
-            if start_vol <= vol_num < end_vol:
-                vol.download(permitted_path, is_flatten)
+                vol_num = int(vol.name.split()[1])
+                # Если тома есть, то снимаем ограничения start_with и end_with для глав, т.к. в таком случае
+                # они - ограничения на тома.
+                start_with_ch = 0
+                end_with_ch = math.inf
+            if start_with <= vol_num < end_with:
+                vol.download(permitted_path, is_flatten, start_with_ch, end_with_ch)
