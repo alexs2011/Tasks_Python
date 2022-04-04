@@ -12,19 +12,20 @@ def main():
     url = "https://coloredmanga.com/manga/one-piece/"
 
     # Загрузка структуры манги с сайта.
-    manga_contents = utils.build_contents(url)
+    # manga_contents = utils.build_contents(url)
 
     # Сохранение загруженной структуры в файле формата JSON.
-    utils.save_contents(manga_contents, filename=file_contents)
+    # utils.save_contents(manga_contents, filename=file_contents)
 
     # Загрузка структуры манги из файла.
     manga_contents = utils.build_contents(file_contents, from_file=True)
+    print(manga_contents)
 
     # Проверочное сохранение в этот же файл.
     # utils.save_contents(manga_contents, filename=file_contents)
 
     # Скачивание манги.
-    utils.download_manga(manga_contents, dir_root, start_with=78, end_with=79, is_flatten=True)
+    # utils.download_manga(manga_contents, dir_root, start_with=78, end_with=79, is_flatten=True)
 
 
 if __name__ == '__main__':
