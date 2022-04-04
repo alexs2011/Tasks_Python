@@ -43,9 +43,9 @@ def download_manga(contents: Manga, dir_root: str, is_flatten: bool = False, sta
     Иерархия при is_flatten=False                   Иерархия при is_flatten=True
     Manga_name.                                     Manga_name.
     +---Volume...                                   \---Volume...
-    |   \---Chapter...                                  0001.jpg
-    |           001.jpg                                 0002.jpg
-    |           002.jpg                                 0003.jpg
+    |   \---Chapter...                                      0001.jpg
+    |           001.jpg                                     0002.jpg
+    |           002.jpg                                     0003.jpg
     |           003.jpg
 
     Если у манги есть тома, то параметры start_with и end_with позволяют задать начальный и конечный тома для
@@ -61,11 +61,10 @@ def create_dir(path: str) -> str:
     Создаёт директорию по пути path, при этом из пути удаляются все неподдерживаемые Windows символы. Возвращает 
     путь, по которому была создана директория.
     """
-    split_path = list(filter(None, path.split("\\")))
-    *new_path, name = split_path
+    *path_lst, name = filter(None, path.split("\\"))
     for ch in WINDOWS_PROHIBITED_DIR_NAME_CHARS:
         name = name.replace(ch, "")
-    new_path.append(name)
-    new_path = "{0}".format('\\'.join(new_path)) + "\\"
+    path_lst.append(name)
+    new_path = '\\'.join(path_lst) + "\\"
     os.makedirs(new_path, exist_ok=True)
     return new_path
