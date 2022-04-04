@@ -17,8 +17,8 @@ class Volume:
         """
         Строковое представление класса.
         """
-        return f'\n\t\nvol_name: {self.name},\n' \
-               f'\tchapters: {self.chapters}\n'
+        return f'\n\tname: {self.name},\n' \
+               f'\tchapters: {self.chapters}'
 
     def __len__(self) -> int:
         """

@@ -12,7 +12,7 @@ class Page:
         """
         Строковое представление класса.
         """
-        return f'\n\t\t\t\n{self.url}\n'
+        return f'\n\t\t\t{self.url}'
 
     def to_JSON(self):
         return self.url

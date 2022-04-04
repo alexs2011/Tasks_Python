@@ -27,7 +27,7 @@ class Manga:
         """
         return f'name: {self.name},\n' \
                f'url: {self.link},\n' \
-               f'volumes: {self.volumes}\n'
+               f'volumes: {self.volumes}'
 
     def __len__(self) -> int:
         """

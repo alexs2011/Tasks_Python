@@ -26,9 +26,9 @@ class Chapter:
         """
         Строковое представление класса.
         """
-        return f'\n\t\t\nname: {self.name},\n' \
+        return f'\n\t\tname: {self.name},\n' \
                f'\t\turl: {self.url},\n' \
-               f'\t\tpages: {self.pages}\n'
+               f'\t\tpages: {self.pages}'
 
     def to_JSON(self):
         chapter_dict = {
