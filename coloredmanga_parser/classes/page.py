@@ -19,8 +19,7 @@ class Page:
         """
         Загружает страницу манги и сохраняет её с необходимым расширением.
         """
-        # Определяем расширение файла.
-        extension = self.url.split(".")[-1]
+        extension = self.url.split(".")[-1]  # Определяем расширение файла.
         path = f"{path}{page_number}.{extension}"
         downloader = Downloader(self.url)
         downloader.download_img(path)

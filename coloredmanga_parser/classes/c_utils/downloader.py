@@ -3,6 +3,7 @@ import requests
 import json
 
 from utility.decorators import timer, console_log
+from classes.c_utils.decorators.retry import retry
 
 
 class Downloader:
@@ -71,14 +72,15 @@ class Downloader:
     @staticmethod
     def __save_img(data: requests.models.Response, path: str) -> None:
         """
-        Сохраняет изображение в файл path.
+        Сохраняет изображение в файл.
         """
         with open(path, 'wb', buffering=0) as f_obj:
             for block in data.iter_content(chunk_size=64 * 1024):
                 f_obj.write(block)
 
     @timer
-    @console_log(info={'attr': 'link', 'm': 'загружено'})
+    # @console_log(info={'attr': 'link', 'm': 'загружено'})
+    @retry(retry=5)
     def download_img(self, path: str) -> None:
         """
         Загружает изображение.
