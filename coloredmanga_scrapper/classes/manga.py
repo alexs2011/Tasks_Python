@@ -57,7 +57,6 @@ class Manga:
 
         return manga_vols
 
-    # @console_log(info='обработана главная страница')
     def __get_vols_from_file(self) -> list[dict]:
         """
         На основе файла JSON заполняет поля класса Manga. Возвращает список томов для дальнейшей обработки.

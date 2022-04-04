@@ -1,6 +1,5 @@
 import functools
 import time
-
 from datetime import datetime
 
 
@@ -20,7 +19,7 @@ class Retry:
         dt = datetime.now()
         cur_date_time = dt.strftime("%d_%m_%y %H_%M_%S")
 
-        self.log_file_name = f"../coloredmanga_scrapper/log/{cur_date_time}.log"
+        self.log_file_name = f"..\\coloredmanga_scrapper\\log\\{cur_date_time}.log"
 
     def __call__(self, *args, **kwargs):
         for i in range(self.retry_num):
@@ -28,7 +27,7 @@ class Retry:
                 val = self.func(*args, **kwargs)
                 print(f"[INFO] Загружено: {args[1]}")
                 return val
-            except Exception:  # Обрабатываем все исключения.
+            except Exception:  # Перехватываем все исключения.
                 print(
                     f"[WARNING] Ошибка загрузки {args[1]}.\n"
                     f"Пытаемся произвести загрузку повторно: {i + 1}/{self.retry_num}"
