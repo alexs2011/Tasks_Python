@@ -1,3 +1,5 @@
+import os.path
+
 import functools
 import time
 from datetime import datetime
@@ -42,11 +44,21 @@ class Retry:
                 )
         return None
 
+    def __del__(self):
+        """
+        Проверяет, существует ли файл с логами (т.е. были ли ошибки). Если да, то в конце работы программы
+        выводит информацию об этом в консоль.
+        """
+        if os.path.isfile(self.log_file_name):
+            print("\n" + "#" * 20)
+            print(f"[ERR] Не удалось загрузить часть файлов, смотри {self.log_file_name}")
+
 
 def retry(retry=5):
     """
     Передаёт опциональный параметр retry (максимальное число повторов) в декорирующий класс Retry.
     """
+
     def _retry(func):
         return Retry(func, retry)
 
