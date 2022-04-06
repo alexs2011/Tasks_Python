@@ -20,7 +20,7 @@ def build_contents(link: str, from_file: bool = False) -> Manga:
 
 
 @console_log(info='Данные сохранены')
-def save_contents(manga: Manga, filename: str = "..\\coloredmanga_scrapper\\data\\contents.json") -> None:
+def save_contents(manga: Manga, filename: str = "..\\coloredmanga_scrapper_async\\data\\contents.json") -> None:
     """
     Сохраняет содержимое, то есть иерархию томов, глав и страниц, класса Manga в файл в формате JSON.
     """

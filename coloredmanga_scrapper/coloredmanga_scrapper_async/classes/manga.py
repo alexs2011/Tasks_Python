@@ -1,6 +1,7 @@
 import math
 
 import utility.utils as utils
+import utility.async_downloader as async_downloader
 from utility.decorators import console_log
 from classes.volume import Volume
 from classes.c_utils.downloader import Downloader
@@ -76,11 +77,14 @@ class Manga:
         # обработка только 2-х томов в целях отладки.
         # manga_vols = {k: manga_vols[k] for k in list(manga_vols)[:2]}
 
-        for vol_name, chapters in manga_vols.items():
-            # Главы в томах располагаются в обратном порядке, например,
-            # от Chapter_8 к Chapter_1, поэтому переворачиваем.
-            sorted_chapters = dict(sorted(chapters.items(), key=lambda x: int(x[0].split()[1])))
-            self.volumes.append(Volume(vol_name, sorted_chapters))
+        full_contents = async_downloader.get_full_contents(manga_vols)
+        print(full_contents)
+
+        # for vol_name, chapters in manga_vols.items():
+        #     # Главы в томах располагаются в обратном порядке, например,
+        #     # от Chapter_8 к Chapter_1, поэтому переворачиваем.
+        #     sorted_chapters = dict(sorted(chapters.items(), key=lambda x: int(x[0].split()[1])))
+        #     self.volumes.append(Volume(vol_name, sorted_chapters))
 
     def __build_vols_from_file(self, manga_vols: list[dict]) -> None:
         """
