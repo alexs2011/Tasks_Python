@@ -3,13 +3,12 @@ from classes.chapter import Chapter
 
 
 class Volume:
-    def __init__(self, name: str, chapters: dict[str, str] | list[dict], from_file: bool = False) -> None:
+    def __init__(self, name: str, chapters: list[dict]) -> None:
         """
         Класс, хранящий название тома и список его глав.
         """
         self.name = name
         self.chapters: list[Chapter] = []
-        self.from_file = from_file
 
         self.__build_chapters(chapters)
 
@@ -33,28 +32,12 @@ class Volume:
         }
         return volume_dict
 
-    def __build_chapters_from_url(self, chapters: dict[str, str]) -> None:
-        """`
-        Формирует список глав для данных, полученных из удалённого источника.
+    def __build_chapters(self, chapters: list[dict]) -> None:
         """
-        for chapter_name, chapter_url in chapters.items():
-            self.chapters.append(Chapter(chapter_name, chapter_url))
-
-    def __build_chapters_from_file(self, chapters: list[dict]) -> None:
-        """`
-        Формирует список глав для данных, полученных из файла.
+        Формирует список глав данного тома.
         """
         for ch in chapters:
-            self.chapters.append(Chapter(ch['name'], ch['url'], raw_pages=ch['pages'], from_file=True))
-
-    def __build_chapters(self, chapters: dict[str, str] | list[dict]) -> None:
-        """
-        Формирует список глав данного тома с учётом того, откуда поступают данные.
-        """
-        if self.from_file:
-            self.__build_chapters_from_file(chapters)
-        else:
-            self.__build_chapters_from_url(chapters)
+            self.chapters.append(Chapter(ch['name'], ch['url'], ch['pages']))
 
     def download(self, path: str, is_flatten: bool, start_with: int, end_with: int) -> None:
         """

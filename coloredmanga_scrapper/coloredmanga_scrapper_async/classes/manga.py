@@ -1,7 +1,7 @@
 import math
 
 import utility.utils as utils
-import utility.async_downloader as async_downloader
+from utility.async_contents_downloader import get_full_contents
 from utility.decorators import console_log
 from classes.volume import Volume
 from classes.c_utils.downloader import Downloader
@@ -45,7 +45,7 @@ class Manga:
         return manga_dict
 
     @console_log(info='обработана главная страница')
-    def __get_vols_from_url(self) -> dict[str, dict[str, str]]:
+    def __get_manga_from_url(self) -> dict[str, dict[str, str]]:
         """
         На основе url-адреса скачивает главную страницу манги и при помощи Parser определяет название и
         тома, а так же url-адреса глав, соответствующих томам.
@@ -58,7 +58,7 @@ class Manga:
 
         return manga_vols
 
-    def __get_vols_from_file(self) -> list[dict]:
+    def __get_manga_from_file(self) -> list[dict]:
         """
         На основе файла JSON заполняет поля класса Manga. Возвращает список томов для дальнейшей обработки.
         """
@@ -74,34 +74,29 @@ class Manga:
         """
         Заполняет список томов для данных, полученных из удалённого источника.
         """
-        # обработка только 2-х томов в целях отладки.
-        # manga_vols = {k: manga_vols[k] for k in list(manga_vols)[:2]}
+        # асинхронно загружаем данные о страницах всех глав во всех томах.
+        contents = get_full_contents(manga_vols)
 
-        full_contents = async_downloader.get_full_contents(manga_vols)
-        print(full_contents)
-
-        # for vol_name, chapters in manga_vols.items():
-        #     # Главы в томах располагаются в обратном порядке, например,
-        #     # от Chapter_8 к Chapter_1, поэтому переворачиваем.
-        #     sorted_chapters = dict(sorted(chapters.items(), key=lambda x: int(x[0].split()[1])))
-        #     self.volumes.append(Volume(vol_name, sorted_chapters))
+        for vol in contents:
+            vol_name, chapters = list(vol.items())[0]
+            self.volumes.append(Volume(vol_name, chapters))
 
     def __build_vols_from_file(self, manga_vols: list[dict]) -> None:
         """
         Заполняет список томов для данных, полученных из файла.
         """
         for vol in manga_vols:
-            self.volumes.append(Volume(vol['name'], vol['chapters'], from_file=True))
+            self.volumes.append(Volume(vol['name'], vol['chapters']))
 
     def __build_volumes(self) -> None:
         """
         Формирует данные, учитывая, откуда они поступают: из файла или удалённого ресурса.
         """
         if self.from_file:
-            manga_vols = self.__get_vols_from_file()
+            manga_vols = self.__get_manga_from_file()
             self.__build_vols_from_file(manga_vols)
         else:
-            manga_vols = self.__get_vols_from_url()
+            manga_vols = self.__get_manga_from_url()
             self.__build_vols_from_utl(manga_vols)
 
     @staticmethod

@@ -6,19 +6,16 @@ from classes.page import Page
 
 
 class Chapter:
-    def __init__(self, name: str, chapter_url: str, raw_pages: list[str] = None, from_file: bool = False) -> None:
+    def __init__(self, name: str, chapter_url: str, raw_pages: list[str]) -> None:
         """
         Класс, хранящий название главы и список url-адресов её страниц.
         """
         self.name = name
         self.url = chapter_url
-        self.from_file = from_file
-
-        # список формируется с учётом параметра from_file: либо анализируется страница по адресу self.url, либо
-        # обрабатываются данные формата JSON, лежащие в self.raw_pages.
-        self.pages: list[Page] = []
-        # данные о страницах главы в формате JSON, считанные из файла, если from_file=True, иначе None.
         self.raw_pages = raw_pages
+
+        # список формируется путём обработки данных из self.raw_pages.
+        self.pages: list[Page] = []
 
         self.__build_pages()
 
@@ -44,41 +41,13 @@ class Chapter:
         """
         return len(self.pages)
 
-    def __get_pages_from_url(self) -> list[str]:
+    # @console_log(info={'attr': 'name', 'm': 'обработано'})
+    def __build_pages(self) -> None:
         """
-        На основе url-адреса скачивает html-страницу главы и при помощи Parser определяет url-адреса страниц,
-        т.е. изображений, в главе.
-        """
-        downloader = Downloader(self.url)
-        chapter_html = downloader.download_html()
-
-        parser = Parser(chapter_html)
-        return parser.parse_chapter_page()
-
-    def __build_pages_from_url(self, chapter_pages: list[str]) -> None:
-        """`
-        Формирует список страниц для данных, полученных из удалённого источника.
-        """
-        for page in chapter_pages:
-            self.pages.append(Page(page))
-
-    def __build_pages_from_file(self) -> None:
-        """`
-        Формирует список страниц для данных, полученных из файла.
+        Формирует список страниц данной главы.
         """
         for page in self.raw_pages:
             self.pages.append(Page(page))
-
-    @console_log(info={'attr': 'name', 'm': 'обработано'})
-    def __build_pages(self) -> None:
-        """
-        Формирует список страниц данной главы с учётом того, откуда поступают данные.
-        """
-        if self.from_file:
-            self.__build_pages_from_file()
-        else:
-            chapter_pages = self.__get_pages_from_url()
-            self.__build_pages_from_url(chapter_pages)
 
     def download(self, path: str, page_number: int, is_flatten: bool) -> None:
         """
