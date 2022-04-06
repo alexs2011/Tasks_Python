@@ -40,7 +40,7 @@ class Parser:
 
         return title, parsed_data
 
-    @timer
+    # @timer
     def parse_chapter_page(self) -> list[str]:
         """
         Разбирает html-страницу главы и находит ссылки на страницы манги (т.е. изображения).
