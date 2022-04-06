@@ -31,11 +31,11 @@ while questions_used < questions_total:
 
     if user_input == answer:
         print("Ответ верный")
-        stats["points"] += int(price)
+        stats["point"] += int(price)
         stats["correct"] += 1
     else:
         print("Ответ неверный")
-        stats["points"] -= int(price)
+        stats["point"] -= int(price)
         stats["incorrect"] += 1
     questions[cat][price]['asked'] = True
     questions_used += 1
