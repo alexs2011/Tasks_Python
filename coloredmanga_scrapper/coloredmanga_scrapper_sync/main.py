@@ -4,7 +4,7 @@ from utility import utils
 def main():
     # файл со структурой манги, куда будет произведено сохранение структуры, и впоследствии из которого может быть
     # осуществлена её загрузка.
-    file_contents = "..\\coloredmanga_scrapper\\data\\contents_full.json"
+    file_contents = "..\\coloredmanga_scrapper_sync\\data\\contents_full.json"
     # Корневая директория, в которой будет создана папка с названием манги и загружены её тома, главы и страницы.
     dir_root = "D:\\"
 
