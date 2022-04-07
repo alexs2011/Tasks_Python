@@ -1,5 +1,6 @@
 import utility.utils as utils
 from classes.chapter import Chapter
+from classes.page import Page
 
 
 class Volume:
@@ -39,13 +40,16 @@ class Volume:
         for ch in chapters:
             self.chapters.append(Chapter(ch['name'], ch['url'], ch['pages']))
 
-    def download(self, path: str, is_flatten: bool, start_with: int, end_with: int) -> None:
+    def download_preparation(self, path: str, is_flatten: bool, start_with: int, end_with: int) -> list[Page]:
         """
-        Загружает главы манги с учетом опциональных ограничений start_with и end_with и сохраняет их.
+        Формирует список страниц манги для загрузки с учетом опциональных ограничений start_with и end_with.
         Данные ограничения могут действовать только при отсутствии у манги томов; в ином случае загружаются все главы.
         """
         path = f"{path}{self.name}\\"
         permitted_path = utils.create_dir(path)
+
+        # Список всех загружаемых страниц.
+        downloading_pages_lst = []
 
         # Вычисляем, какой номер будет у первой страницы главы. Если is_flatten=False, то он всегда равен 1;
         # иначе он равен сумме количества страниц ранее обработанных глав.
@@ -53,6 +57,9 @@ class Volume:
         for ch in self.chapters:
             ch_num = int(ch.name.split()[1])
             if start_with <= ch_num < end_with:
-                ch.download(permitted_path, ch_start_page_number, is_flatten)
+                downloading_pages_lst.extend(
+                    ch.download_preparation(permitted_path, ch_start_page_number, is_flatten)
+                )
                 if is_flatten:
                     ch_start_page_number += len(ch.pages)
+        return downloading_pages_lst

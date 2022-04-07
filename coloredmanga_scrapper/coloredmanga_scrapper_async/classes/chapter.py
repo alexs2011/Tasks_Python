@@ -49,9 +49,9 @@ class Chapter:
         for page in self.raw_pages:
             self.pages.append(Page(page))
 
-    def download(self, path: str, page_number: int, is_flatten: bool) -> None:
+    def download_preparation(self, path: str, page_number: int, is_flatten: bool) -> list[Page]:
         """
-        Загружает страницы манги и сохраняет их.
+        Формирует список страниц манги для загрузки.
         """
         if is_flatten:
             permitted_path = path
@@ -69,4 +69,6 @@ class Chapter:
 
             number += 1
 
-            page.download(permitted_path, number_str)
+            page.download_preparation(permitted_path, number_str)
+
+        return self.pages

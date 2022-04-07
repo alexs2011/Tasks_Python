@@ -3,15 +3,11 @@ import requests
 import json
 
 from utility.decorators import timer, console_log
+import utility.utils as utils
 from classes.c_utils.decorators.retry import retry
 
 
 class Downloader:
-    headers = {
-        "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
-        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.60 Safari/537.36"
-    }
-
     def __init__(self, link: str) -> None:
         """
         Класс, обеспечивающий загрузку данных по сети и из файла на основе ссылки.
@@ -47,7 +43,7 @@ class Downloader:
         Загружает данные из удалённого источника.
         """
         try:
-            data = requests.get(self.link, headers=self.headers, timeout=10)
+            data = requests.get(self.link, headers=utils.headers, timeout=10)
         except requests.exceptions.ConnectionError:
             raise TimeoutError(f"Сервер не отвечает на запрос по адресу {self.link}.")
 
@@ -86,7 +82,7 @@ class Downloader:
         Загружает изображение.
         """
         try:
-            data = requests.get(self.link, headers=self.headers, stream=True, timeout=10)
+            data = requests.get(self.link, headers=utils.headers, stream=True, timeout=10)
         except requests.exceptions.ConnectionError:
             raise TimeoutError(f"Сервер не отвечает на запрос по адресу {self.link}.")
 

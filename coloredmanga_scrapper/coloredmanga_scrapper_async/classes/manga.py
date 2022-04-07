@@ -2,6 +2,7 @@ import math
 
 import utility.utils as utils
 from utility.async_contents_downloader import get_full_contents
+from utility.async_pages_downloader import download_pages
 from utility.decorators import console_log
 from classes.volume import Volume
 from classes.c_utils.downloader import Downloader
@@ -113,8 +114,8 @@ class Manga:
 
     def download(self, dir_root: str, is_flatten: bool, start_with: int, end_with: int) -> None:
         """
-        Загружает тома манги с учетом опциональных ограничений start_with и end_with, и сохраняет их.
-        Если томов у манги нет, то данные ограничения применяются к главам.
+        Формирует список страниц манги для загрузки на основе томов с учетом опциональных ограничений
+        start_with и end_with, и сохраняет их. Если томов у манги нет, то данные ограничения применяются к главам.
         """
         self.__validate_downloading_params(start_with, end_with)
 
@@ -123,6 +124,9 @@ class Manga:
 
         if end_with == 0:
             end_with = math.inf
+
+        # Список всех загружаемых страниц.
+        downloading_pages_lst = []
 
         for vol in self.volumes:
             # У некоторых манг на сайте нет томов, только главы. Обрабатываем такой случай.
@@ -137,4 +141,8 @@ class Manga:
                 start_with_ch = 0
                 end_with_ch = math.inf
             if start_with <= vol_num < end_with:
-                vol.download(permitted_path, is_flatten, start_with_ch, end_with_ch)
+                downloading_pages_lst.extend(
+                    vol.download_preparation(permitted_path, is_flatten, start_with_ch, end_with_ch)
+                )
+
+        download_pages(downloading_pages_lst)

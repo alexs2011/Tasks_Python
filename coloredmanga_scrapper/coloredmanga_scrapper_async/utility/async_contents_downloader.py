@@ -3,11 +3,7 @@ import asyncio
 from copy import deepcopy
 
 from classes.c_utils.parser import Parser
-
-headers = {
-    "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
-    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.60 Safari/537.36"
-}
+import utility.utils as utils
 
 
 async def get_pages(session: aiohttp.ClientSession, ch_name: str, ch_link: str) -> dict:
@@ -43,8 +39,8 @@ async def get_manga_vols(vols: dict[str, dict[str, str]]) -> list[dict[str, list
     Открывает соединение для асинхронной загрузки данных; обрабатывает тома манги.
     """
     connector = aiohttp.TCPConnector(limit=50)  # Число одновременных соединений
-    timeout = aiohttp.ClientTimeout(total=60*60*12)  # устанавливаем максимальное время работы сессии на 12 часов.
-    async with aiohttp.ClientSession(headers=headers, connector=connector, timeout=timeout) as session:
+    timeout = aiohttp.ClientTimeout(total=60 * 60 * 12)  # устанавливаем максимальное время работы сессии на 12 часов.
+    async with aiohttp.ClientSession(headers=utils.headers, connector=connector, timeout=timeout) as session:
         tasks_vols = []
         for vol_name, vol_chapters in vols.items():
             tasks_vols.append(asyncio.ensure_future(get_vol_chapters(session, vol_name, vol_chapters)))

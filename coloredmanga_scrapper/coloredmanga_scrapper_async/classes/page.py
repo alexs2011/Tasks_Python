@@ -4,9 +4,11 @@ from classes.c_utils.downloader import Downloader
 class Page:
     def __init__(self, page_url: str) -> None:
         """
-        Класс, хранящий url-адрес страницы.
+        Класс, хранящий url-адрес страницы и путь, по которому она будет сохранена.
         """
         self.url = page_url
+
+        self.path = None
 
     def __repr__(self):
         """
@@ -17,11 +19,9 @@ class Page:
     def to_JSON(self):
         return self.url
 
-    def download(self, path: str, page_number: str) -> None:
+    def download_preparation(self, path: str, page_number: str) -> None:
         """
-        Загружает страницу манги и сохраняет её с необходимым расширением.
+        Определяет расширение у страницы манги и записывает путь, по которому будет сохранена загруженная страница.
         """
         extension = self.url.split(".")[-1]  # Определяем расширение файла.
-        path = f"{path}{page_number}.{extension}"
-        downloader = Downloader(self.url)
-        downloader.download_img(path)
+        self.path = f"{path}{page_number}.{extension}"
