@@ -4,12 +4,12 @@ from utility import utils
 def main():
     # файл со структурой манги, куда будет произведено сохранение структуры, и впоследствии из которого может быть
     # осуществлена её загрузка.
-    file_contents = "..\\coloredmanga_scrapper_async\\data\\contents_shrink.json"
+    file_contents = "..\\coloredmanga_scrapper_async\\data\\contents_full.json"
     # Корневая директория, в которой будет создана папка с названием манги и загружены её тома, главы и страницы.
     dir_root = "D:\\"
 
     # Ссылка на главную страницу манги.
-    url = "https://coloredmanga.com/manga/dragon-ball-super/"
+    url = "https://coloredmanga.com/manga/one-piece/"
 
     # Загрузка структуры манги с сайта.
     manga_contents = utils.build_contents(url)
