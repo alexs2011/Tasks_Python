@@ -64,31 +64,3 @@ class Downloader:
             raise FileNotFoundError(
                 "Файл отсутствует. Проверьте путь до файла или произведите загрузку данных из удалённого источника."
             )
-
-    @staticmethod
-    def __save_img(data: requests.models.Response, path: str) -> None:
-        """
-        Сохраняет изображение в файл.
-        """
-        with open(path, 'wb', buffering=0) as f_obj:
-            for block in data.iter_content(chunk_size=64 * 1024):
-                f_obj.write(block)
-
-    @timer
-    # @console_log(info={'attr': 'link', 'm': 'загружено'})
-    @retry(retry=5)
-    def download_img(self, path: str) -> None:
-        """
-        Загружает изображение.
-        """
-        try:
-            data = requests.get(self.link, headers=utils.headers, stream=True, timeout=10)
-        except requests.exceptions.ConnectionError:
-            raise TimeoutError(f"Сервер не отвечает на запрос по адресу {self.link}.")
-
-        self.__is_status_code_ok(data)
-
-        try:
-            self.__save_img(data, path)
-        except requests.exceptions.ConnectionError:
-            raise TimeoutError(f"Сервер не отвечает на запрос по адресу {self.link}.")
