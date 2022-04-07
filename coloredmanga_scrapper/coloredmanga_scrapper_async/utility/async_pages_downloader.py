@@ -7,6 +7,9 @@ from classes.page import Page
 
 
 async def get_page(session: aiohttp.ClientSession, page: Page) -> None:
+    """
+    На основе url-адреса асинхронно скачивает изображение и сохраняет его.
+    """
     async with session.get(page.url) as resp:
         # if resp.status == 200:
         #     f = await aiofiles.open(page.path, mode='wb')
@@ -19,6 +22,9 @@ async def get_page(session: aiohttp.ClientSession, page: Page) -> None:
 
 
 async def process_pages(pages: list[Page]) -> None:
+    """
+    Открывает соединение для асинхронной загрузки данных.
+    """
     # устанавливаем небольшое число одновременных соединений, чтобы не нагружать сервер.
     connector = aiohttp.TCPConnector(limit=20)
 
@@ -33,5 +39,8 @@ async def process_pages(pages: list[Page]) -> None:
 
 
 def download_pages(pages: list) -> None:
+    """
+    Позволяет асинхронно загрузить и сохранить страницы.
+    """
     asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
     asyncio.run(process_pages(pages))
