@@ -2,9 +2,8 @@ import os
 import requests
 import json
 
-from utility.decorators import timer, console_log
+from utility.decorators import timer
 import utility.utils as utils
-from classes.c_utils.decorators.retry import retry
 
 
 class Downloader:
