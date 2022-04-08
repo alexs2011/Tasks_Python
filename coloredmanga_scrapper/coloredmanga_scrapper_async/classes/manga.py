@@ -5,6 +5,7 @@ from utility.async_contents_downloader import get_full_contents
 from utility.async_pages_downloader import download_pages
 from utility.decorators import console_log
 from classes.volume import Volume
+from classes.page import Page
 from classes.c_utils.downloader import Downloader
 from classes.c_utils.parser import Parser
 
@@ -112,10 +113,10 @@ class Manga:
             if start_with >= end_with:
                 raise ValueError("Номер начального тома или главы больше или равен номеру конечного.")
 
-    def download(self, dir_root: str, is_flatten: bool, start_with: int, end_with: int) -> None:
+    def pages_preparation(self, dir_root: str, is_flatten: bool, start_with: int, end_with: int) -> list[Page]:
         """
         Формирует список страниц манги для загрузки на основе томов с учетом опциональных ограничений
-        start_with и end_with, и сохраняет их. Если томов у манги нет, то данные ограничения применяются к главам.
+        start_with и end_with. Если томов у манги нет, то данные ограничения применяются к главам.
         """
         self.__validate_downloading_params(start_with, end_with)
 
@@ -126,7 +127,7 @@ class Manga:
             end_with = math.inf
 
         # Список всех загружаемых страниц.
-        downloading_pages_lst = []
+        pages_lst = []
 
         for vol in self.volumes:
             # У некоторых манг на сайте нет томов, только главы. Обрабатываем такой случай.
@@ -141,8 +142,14 @@ class Manga:
                 start_with_ch = 0
                 end_with_ch = math.inf
             if start_with <= vol_num < end_with:
-                downloading_pages_lst.extend(
-                    vol.download_preparation(permitted_path, is_flatten, start_with_ch, end_with_ch)
+                pages_lst.extend(
+                    vol.pages_preparation(permitted_path, is_flatten, start_with_ch, end_with_ch)
                 )
+        return pages_lst
 
-        download_pages(downloading_pages_lst)
+    def download(self, dir_root: str, is_flatten: bool, start_with: int, end_with: int) -> None:
+        """
+        Формирует список страниц манги, загружает и сохраняет их.
+        """
+        pages = self.pages_preparation(dir_root, is_flatten, start_with, end_with)
+        download_pages(pages)

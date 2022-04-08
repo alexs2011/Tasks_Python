@@ -40,7 +40,7 @@ class Volume:
         for ch in chapters:
             self.chapters.append(Chapter(ch['name'], ch['url'], ch['pages']))
 
-    def download_preparation(self, path: str, is_flatten: bool, start_with: int, end_with: int) -> list[Page]:
+    def pages_preparation(self, path: str, is_flatten: bool, start_with: int, end_with: int) -> list[Page]:
         """
         Формирует список страниц манги для загрузки с учетом опциональных ограничений start_with и end_with.
         Данные ограничения могут действовать только при отсутствии у манги томов; в ином случае загружаются все главы.
@@ -58,7 +58,7 @@ class Volume:
             ch_num = int(ch.name.split()[1])
             if start_with <= ch_num < end_with:
                 downloading_pages_lst.extend(
-                    ch.download_preparation(permitted_path, ch_start_page_number, is_flatten)
+                    ch.pages_preparation(permitted_path, ch_start_page_number, is_flatten)
                 )
                 if is_flatten:
                     ch_start_page_number += len(ch.pages)
