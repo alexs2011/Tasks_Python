@@ -88,7 +88,7 @@ class Chapter:
             permitted_path = path
         else:
             path = f"{path}{self.name}\\"
-            permitted_path = utils.create_dir(path)
+            permitted_path = utils._create_dir(path)
 
         number = page_number
         for page in self.pages:

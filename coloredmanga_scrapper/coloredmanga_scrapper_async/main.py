@@ -20,9 +20,6 @@ def main():
     # Загрузка структуры манги из файла.
     # manga_contents = utils.build_contents(file_contents, from_file=True)
 
-    # Проверочное сохранение в этот же файл.
-    # utils.save_contents(manga_contents, filename=file_contents)
-
     # Скачивание манги.
     utils.download_manga(manga_contents, dir_root, start_with=0, end_with=0, is_flatten=False)
 

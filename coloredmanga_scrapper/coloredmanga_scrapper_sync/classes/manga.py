@@ -120,7 +120,7 @@ class Manga:
         self.__validate_downloading_params(start_with, end_with)
 
         path = f"{dir_root}{self.name}\\"
-        permitted_path = utils.create_dir(path)
+        permitted_path = utils._create_dir(path)
 
         if end_with == 0:
             end_with = math.inf

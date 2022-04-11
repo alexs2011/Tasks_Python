@@ -113,7 +113,7 @@ class Manga:
             if start_with >= end_with:
                 raise ValueError("Номер начального тома или главы больше или равен номеру конечного.")
 
-    def pages_preparation(self, dir_root: str, is_flatten: bool, start_with: int, end_with: int) -> list[Page]:
+    def _pages_preparation(self, dir_root: str, is_flatten: bool, start_with: int, end_with: int) -> list[Page]:
         """
         Формирует список страниц манги для загрузки на основе томов с учетом опциональных ограничений
         start_with и end_with. Если томов у манги нет, то данные ограничения применяются к главам.
@@ -121,7 +121,7 @@ class Manga:
         self.__validate_downloading_params(start_with, end_with)
 
         path = f"{dir_root}{self.name}\\"
-        permitted_path = utils.create_dir(path)
+        permitted_path = utils._create_dir(path)
 
         if end_with == 0:
             end_with = math.inf
@@ -143,7 +143,7 @@ class Manga:
                 end_with_ch = math.inf
             if start_with <= vol_num < end_with:
                 pages_lst.extend(
-                    vol.pages_preparation(permitted_path, is_flatten, start_with_ch, end_with_ch)
+                    vol._pages_preparation(permitted_path, is_flatten, start_with_ch, end_with_ch)
                 )
         return pages_lst
 
@@ -151,5 +151,5 @@ class Manga:
         """
         Формирует список страниц манги, загружает и сохраняет их.
         """
-        pages = self.pages_preparation(dir_root, is_flatten, start_with, end_with)
+        pages = self._pages_preparation(dir_root, is_flatten, start_with, end_with)
         download_pages(pages)

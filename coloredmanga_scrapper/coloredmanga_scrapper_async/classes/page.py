@@ -19,7 +19,7 @@ class Page:
     def to_JSON(self):
         return self.url
 
-    def pages_preparation(self, path: str, page_number: str) -> None:
+    def _pages_preparation(self, path: str, page_number: str) -> None:
         """
         Определяет расширение у страницы манги и записывает путь, по которому будет сохранена загруженная страница.
         """

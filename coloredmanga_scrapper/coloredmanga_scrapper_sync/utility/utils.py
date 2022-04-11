@@ -56,7 +56,7 @@ def download_manga(contents: Manga, dir_root: str, is_flatten: bool = False, sta
     contents.download(dir_root, is_flatten, start_with, end_with)
 
 
-def create_dir(path: str) -> str:
+def _create_dir(path: str) -> str:
     """
     Создаёт директорию по пути path, при этом из пути удаляются все неподдерживаемые Windows символы. Возвращает 
     путь, по которому была создана директория.
