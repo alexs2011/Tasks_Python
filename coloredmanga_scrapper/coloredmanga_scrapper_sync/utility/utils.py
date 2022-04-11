@@ -1,8 +1,8 @@
 import json
 import os
 
-from utility.decorators import console_log, timer
 from classes.manga import Manga
+from utility.decorators import console_log, timer
 
 # Название манги и глав могут содержать символы, запрещённые в именах папок Windows.
 # В этом случае они должны быть удалены при создании папок.

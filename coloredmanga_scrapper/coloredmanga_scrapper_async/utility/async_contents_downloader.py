@@ -1,9 +1,10 @@
-import aiohttp
 import asyncio
 from copy import deepcopy
 
-from classes.c_utils.parser import Parser
+import aiohttp
+
 import utility.utils as utils
+from classes.c_utils.parser import Parser
 
 
 async def get_pages(session: aiohttp.ClientSession, ch_name: str, ch_link: str) -> dict:

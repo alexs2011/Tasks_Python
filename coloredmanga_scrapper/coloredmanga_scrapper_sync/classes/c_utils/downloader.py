@@ -1,9 +1,10 @@
-import os
-import requests
 import json
+import os
 
-from utility.decorators import timer, console_log
+import requests
+
 from classes.c_utils.decorators.retry import retry
+from utility.decorators import timer
 
 
 class Downloader:

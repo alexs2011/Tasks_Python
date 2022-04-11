@@ -1,6 +1,3 @@
-from classes.c_utils.downloader import Downloader
-
-
 class Page:
     def __init__(self, page_url: str) -> None:
         """

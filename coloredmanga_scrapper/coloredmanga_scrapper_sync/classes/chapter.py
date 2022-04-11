@@ -1,8 +1,8 @@
 import utility.utils as utils
-from utility.decorators import console_log
 from classes.c_utils.downloader import Downloader
 from classes.c_utils.parser import Parser
 from classes.page import Page
+from utility.decorators import console_log
 
 
 class Chapter:

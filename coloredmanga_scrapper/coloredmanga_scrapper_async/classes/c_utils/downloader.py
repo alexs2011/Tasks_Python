@@ -1,9 +1,10 @@
-import os
-import requests
 import json
+import os
 
-from utility.decorators import timer
+import requests
+
 import utility.utils as utils
+from utility.decorators import timer
 
 
 class Downloader:

@@ -1,13 +1,13 @@
 import math
 
 import utility.utils as utils
+from classes.c_utils.downloader import Downloader
+from classes.c_utils.parser import Parser
+from classes.page import Page
+from classes.volume import Volume
 from utility.async_contents_downloader import get_full_contents
 from utility.async_pages_downloader import download_pages
 from utility.decorators import console_log
-from classes.volume import Volume
-from classes.page import Page
-from classes.c_utils.downloader import Downloader
-from classes.c_utils.parser import Parser
 
 
 class Manga:

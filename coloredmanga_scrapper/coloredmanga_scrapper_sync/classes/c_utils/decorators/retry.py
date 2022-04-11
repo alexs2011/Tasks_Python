@@ -1,6 +1,5 @@
-import os.path
-
 import functools
+import os.path
 import time
 from datetime import datetime
 
